@@ -1,20 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/05 10:14:56 by corin             #+#    #+#             */
-/*   Updated: 2023/10/15 15:37:54 by ccraciun         ###   ########.fr       */
+/*   Created: 2023/10/15 16:26:08 by ccraciun          #+#    #+#             */
+/*   Updated: 2023/10/15 16:35:58 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+// Applies the function ’f’ on each character of
+// the string passed as argument, passing its index
+// as first argument. Each character is passed by
+// address to ’f’ to be modified if necessary.
 
-char	ft_toupper(char c)
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	if (c >= 'a' && c <= 'z')
-		return (c - 'a' + 'A');
-	return (c);
+	unsigned int i;
+
+	i = 0;
+	while (s[i])
+	{
+		f(i, &s[i]);
+		i++;
+	}
 }

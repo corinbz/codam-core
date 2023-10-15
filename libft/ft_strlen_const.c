@@ -1,18 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_strlen_const.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: corin <corin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/05 10:14:15 by corin             #+#    #+#             */
-/*   Updated: 2023/10/10 20:58:28 by corin            ###   ########.fr       */
+/*   Created: 2023/10/11 19:57:29 by corin             #+#    #+#             */
+/*   Updated: 2023/10/11 19:59:53 by corin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isdigit(char s)
+#include <stdio.h>
+
+size_t	ft_strlen_const(const char *str)
 {
-	if (s <= '9' && s >= '0')
-		return (1);
-	return (0);
+	size_t	len;
+
+	len = 0;
+	while (*str)
+	{
+		str++;
+		len++;
+	}
+	return (len);
 }

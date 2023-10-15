@@ -1,14 +1,18 @@
-#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: corin <corin@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/05 10:14:08 by corin             #+#    #+#             */
+/*   Updated: 2023/10/11 19:45:13 by corin            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int ft_isalpha(char c) {
-  if ((c > 'a' && c < 'z') || (c > 'A' && c < 'Z'))
-    return (1);
-  return (0);
-}
-
-int main(int ac, char **av) {
-  if (ac == 2) {
-    printf("character %c is alpha? --> %d", av[1][0], ft_isalpha(av[1][0]));
-  }
-  return (0);
+int	ft_isalpha(char c)
+{
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+		return (1);
+	return (0);
 }

@@ -1,20 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/05 10:14:56 by corin             #+#    #+#             */
-/*   Updated: 2023/10/15 15:37:54 by ccraciun         ###   ########.fr       */
+/*   Created: 2023/10/10 20:58:55 by corin             #+#    #+#             */
+/*   Updated: 2023/10/14 14:54:02 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+#include <stdlib.h>
 #include <stdio.h>
 
-char	ft_toupper(char c)
+int	ft_atoi(const char *str)
 {
-	if (c >= 'a' && c <= 'z')
-		return (c - 'a' + 'A');
-	return (c);
+	int	result;
+	int	sign;
+	int	index;
+
+	result = 0;
+	sign = 1;
+	index = 0;
+	while (ft_isspace(str[index]))
+		index++;
+	if (str[index] == '-')
+	{
+		sign = -1;
+		index++;
+	}
+	else if (str[index] == '+')
+		index++;
+	while (str[index] >= '0' && str[index] <= '9')
+	{
+		result = result * 10 + str[index] - '0';
+		index++;
+	}
+	return (result * sign);
 }

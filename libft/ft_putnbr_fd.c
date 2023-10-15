@@ -1,20 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/05 10:14:56 by corin             #+#    #+#             */
-/*   Updated: 2023/10/15 15:37:54 by ccraciun         ###   ########.fr       */
+/*   Created: 2023/10/15 15:43:13 by ccraciun          #+#    #+#             */
+/*   Updated: 2023/10/15 16:19:27 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "libft.h"
+#include <limits.h>
 
-char	ft_toupper(char c)
+void	ft_put_int(long int a, int fd)
 {
-	if (c >= 'a' && c <= 'z')
-		return (c - 'a' + 'A');
-	return (c);
+	char	c;
+
+	c = a % 10 + '0';
+	write(fd, &c, sizeof(char));
+}
+
+void	ft_putnbr_fd(int nb, int fd)
+{
+	long int	lnb;
+
+	lnb = nb;
+	if (nb <= INT_MAX || nb >= INT_MIN)
+	{
+		if (lnb < 0)
+		{
+			write(fd, "-", sizeof(char));
+			lnb = -lnb;
+		}
+		if (lnb >= 10)
+		{
+			ft_putnbr_fd(lnb / 10, fd);
+		}
+		ft_put_int(lnb, fd);
+	}
 }
