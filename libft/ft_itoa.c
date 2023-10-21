@@ -43,6 +43,8 @@ static char	*get_reversed(int n)
 
 	long_n = n;
 	c = malloc(100);
+  if (c == NULL)
+    return (NULL);
 	i = 0;
 	if (long_n < 0)
 	{
