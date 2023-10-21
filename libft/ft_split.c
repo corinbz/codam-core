@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 20:59:43 by corin             #+#    #+#             */
-/*   Updated: 2023/10/21 16:32:48 by ccraciun         ###   ########.fr       */
+/*   Updated: 2023/10/21 16:33:33 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static size_t	count_words(char const *s, char c)
 		  }
 		i++;
 	}
-	printf("result is %zu\n",result);
+	// printf("result is %zu\n",result);
 	return (result);
 }
 
