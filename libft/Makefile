@@ -6,7 +6,7 @@
 #    By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/10 21:27:13 by corin             #+#    #+#              #
-#    Updated: 2023/10/15 16:52:03 by ccraciun         ###   ########.fr        #
+#    Updated: 2023/10/21 12:34:11 by ccraciun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -107,3 +107,6 @@ fclean: clean
 	rm -rf $(NAME)
 
 re: fclean all
+so:
+	$(CC) -nostartfiles -fPIC $(FLAGS) $(SRC)
+	gcc -nostartfiles -shared -o libft.so $(OBJS)
