@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 20:59:43 by corin             #+#    #+#             */
-/*   Updated: 2023/10/21 17:56:23 by ccraciun         ###   ########.fr       */
+/*   Updated: 2023/10/21 17:57:47 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ char	**ft_split(char const *s, char c)
 			index++;
 		}
 	}
-	result[index] = NULL;
+	result[index] = 0;
 	return (result);
 }
 
