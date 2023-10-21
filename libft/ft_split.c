@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 20:59:43 by corin             #+#    #+#             */
-/*   Updated: 2023/10/21 16:28:45 by ccraciun         ###   ########.fr       */
+/*   Updated: 2023/10/21 16:30:58 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@ static size_t	count_words(char const *s, char c)
 	size_t	result;
 	int separator_found;
 	int i;
-	int other_char_found;
 
-	other_char_found = 0;
 	separator_found = 0;
 	result = 0;
 	i = 0;
@@ -34,15 +32,12 @@ static size_t	count_words(char const *s, char c)
 				// other_char_found = 0;
 			 }
 			separator_found = 0;
-			if(other_char_found)
-				result++;
+			result++;
 		}
 		if(!separator_found && s[i] == c)
 		  {
 				separator_found = 1;
-				other_char_found = 0;
 		  }
-		other_char_found = 1;
 		i++;
 	}
 	printf("result is %zu\n",result);
@@ -94,7 +89,7 @@ char	**ft_split(char const *s, char c)
 	char	**result;
 
 	index = 0;
-	result = (char **)malloc(sizeof(*result) * (count_words(ft_strtrim(s,c), c) + 1));
+	result = (char **)malloc(sizeof(*result) * (count_words(ft_strtrim(s,&c), c) + 1));
 	if (!s || !(result))
 		return (NULL);
 	while (*s)
@@ -116,14 +111,14 @@ char	**ft_split(char const *s, char c)
 	return (result);
 }
 
-int main()
-{
-	char **result = ft_split("@@@test@sadsadsa@@@", '@');
-	int i = 0;
+// int main()
+// {
+// 	char **result = ft_split("@@@test@sadsadsa@@@", '@');
+// 	int i = 0;
 
-	while(result[i] != NULL)
-	{
-		printf("index %d is %s\n",i,result[i]);
-		i++;
-	}
-}
+// 	while(result[i] != NULL)
+// 	{
+// 		printf("index %d is %s\n",i,result[i]);
+// 		i++;
+// 	}
+// }
