@@ -49,7 +49,9 @@ static char	*create_substring(const char *s, char c)
 	if (len == 0)
 		return (NULL);
 	substr = (char *)malloc((len + 1) * sizeof(char));
-	if (substr)
+  if (substr == NULL)
+    return NULL;
+  else if (substr)
 	{
 		ft_strlcpy(substr, s, len + 1);
 	}
@@ -74,7 +76,9 @@ char	**ft_split(char const *s, char c)
 			result[index] = create_substring(s, c);
 			if (result[index] == NULL)
 			{
-				free(result);
+        while(index >= 0)
+          free (result[index]);
+        free (result);
 				return (NULL);
 			}
 			s += substr_len(s, c) + 1;
