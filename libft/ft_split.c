@@ -76,7 +76,7 @@ char	**ft_split(char const *s, char c)
 			result[index] = create_substring(s, c);
 			if (result[index] == NULL)
 			{
-        while(index >= 0)
+        while(index-- >= 0)
           free (result[index]);
         free (result);
 				return (NULL);
