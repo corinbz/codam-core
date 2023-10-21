@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 20:59:43 by corin             #+#    #+#             */
-/*   Updated: 2023/10/21 11:22:23 by ccraciun         ###   ########.fr       */
+/*   Updated: 2023/10/21 12:04:23 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static size_t	count_words(char const *s, char c)
 	result = 0;
 	while (*s)
 	{
-		if (*s == c)
+		if (*s != c)
 			result++;
 		s++;
 	}
