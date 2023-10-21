@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 20:59:43 by corin             #+#    #+#             */
-/*   Updated: 2023/10/15 15:11:58 by ccraciun         ###   ########.fr       */
+/*   Updated: 2023/10/21 10:58:27 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,19 +46,27 @@ static char	*create_substring(const char *s, char c)
 	if (len == 0)
 		return (NULL);
 	substr = (char *)malloc((len + 1) * sizeof(char));
-  if (substr == NULL)
-    return NULL;
-  else if (substr)
+	if (substr == NULL)
+		return (NULL);
+	else if (substr)
 	{
 		ft_strlcpy(substr, s, len + 1);
 	}
 	return (substr);
 }
 
+char	*check_alloc_fail(char **result, int index)
+{
+	while (index-- >= 0)
+		free(result[index]);
+	free(result);
+	return (NULL);
+}
+
 char	**ft_split(char const *s, char c)
 {
-  int index;
-	char **result;
+	int		index;
+	char	**result;
 
 	index = 0;
 	result = (char **)malloc(sizeof(*result) * (count_words(s, c) + 1));
@@ -72,12 +80,7 @@ char	**ft_split(char const *s, char c)
 		{
 			result[index] = create_substring(s, c);
 			if (result[index] == NULL)
-			{
-        while(index-- >= 0)
-          free (result[index]);
-        free (result);
-				return (NULL);
-			}
+				check_alloc_fail(result, index);
 			s += substr_len(s, c) + 1;
 			index++;
 		}
