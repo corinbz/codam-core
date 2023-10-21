@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 20:59:43 by corin             #+#    #+#             */
-/*   Updated: 2023/10/21 17:57:47 by ccraciun         ###   ########.fr       */
+/*   Updated: 2023/10/21 18:19:51 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,19 @@
 
 static size_t	count_words(char const *s, char c)
 {
-	size_t	result;
-	int separator_found;
-	int i;
+	int	words;
+	int	i;
 
-	separator_found = 0;
-	result = 0;
+	words = 0;
 	i = 0;
 	while (s[i])
 	{
-		while(separator_found)
-		{
-			while(s[i] == c)
-				i++;
-			separator_found = 0;
-			result++;
-		}
-		if(!separator_found && s[i] == c)
-		  {
-				separator_found = 1;
-		  }
+		if ((s[i + 1] == c || s[i + 1] == '\0') == 1
+			&& (s[i] == c || s[i] == '\0') == 0)
+			words++;
 		i++;
 	}
-	return (result);
+	return (words);
 }
 
 static size_t	substr_len(const char *s, char c)
@@ -101,21 +91,21 @@ char	**ft_split(char const *s, char c)
 			index++;
 		}
 	}
-	result[index] = 0;
+	result[index] = NULL;
 	return (result);
 }
 
-// int main()
-// {
-// 	char **result = ft_split("hello", ' ');
-// 	int i = 0;
+int main()
+{
+	char **result = ft_split("hello", ' ');
+	int i = 0;
 
-// 	while(result[i] != NULL)
-// 	{
-// 		printf("index %d is %s\n",i,result[i]);
-// 		free(result[i]);
-// 		i++;
-// 	}
-// 	free(result[i]);
-// 	free(result);
-// }
+	while(result[i] != NULL)
+	{
+		printf("index %d is %s\n",i,result[i]);
+		free(result[i]);
+		i++;
+	}
+	free(result[i]);
+	free(result);
+}
