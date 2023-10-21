@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 17:32:36 by ccraciun          #+#    #+#             */
-/*   Updated: 2023/10/21 17:47:28 by ccraciun         ###   ########.fr       */
+/*   Updated: 2023/10/21 18:43:43 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ char	*ft_strdup(const char *str)
 	if (str_len == 0)
 	{
 		result = malloc (1);
-		result[0] = '\0';
 		if(result == NULL)
 			return NULL;
+		result[0] = '\0';
 	}
 	result = malloc ((str_len + 1) * sizeof (char));
 	if (result == NULL)
