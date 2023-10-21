@@ -60,7 +60,7 @@ static char	*create_substring(const char *s, char c)
 
 char	**ft_split(char const *s, char c)
 {
-	size_t index;
+  int index;
 	char **result;
 
 	index = 0;
