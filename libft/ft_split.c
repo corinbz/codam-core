@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 20:59:43 by corin             #+#    #+#             */
-/*   Updated: 2023/10/21 14:02:32 by ccraciun         ###   ########.fr       */
+/*   Updated: 2023/10/21 14:07:29 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static size_t	count_words(char const *s, char c)
 	{
 		while(separator_found)
 		{
-			if(*s == c)
+			while(*s == c)
 				s++;
 			separator_found = 0;
 		}
@@ -38,6 +38,7 @@ static size_t	count_words(char const *s, char c)
 		}
 			s++;
 	}
+	printf("result is %zu\n",result);
 	return (result);
 }
 
@@ -110,7 +111,7 @@ char	**ft_split(char const *s, char c)
 
 // int main()
 // {
-// 	char **result = ft_split("@@@test@sadsadsa", ' ');
+// 	char **result = ft_split("@@@test@sadsadsa", '@');
 // 	int i = 0;
 
 // 	while(result[i] != NULL)
