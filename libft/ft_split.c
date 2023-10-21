@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 20:59:43 by corin             #+#    #+#             */
-/*   Updated: 2023/10/21 10:58:27 by ccraciun         ###   ########.fr       */
+/*   Updated: 2023/10/21 11:00:15 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,11 @@ static char	*create_substring(const char *s, char c)
 
 char	*check_alloc_fail(char **result, int index)
 {
-	while (index-- >= 0)
+	while (index >= 0)
+	{
 		free(result[index]);
+		index--;
+	}
 	free(result);
 	return (NULL);
 }
