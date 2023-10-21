@@ -63,6 +63,8 @@ static char	*ft_itoa_zero(void)
 	char	*result;
 
 	result = (char *)malloc(2);
+  if (result == NULL)
+    return (NULL);
 	result[0] = '0';
 	result[1] = '\0';
 	return (result);
