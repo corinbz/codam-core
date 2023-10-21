@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 20:59:13 by corin             #+#    #+#             */
-/*   Updated: 2023/10/21 10:49:33 by ccraciun         ###   ########.fr       */
+/*   Updated: 2023/10/21 19:00:08 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ char	*ft_itoa(int n)
 	char	*result;
 
 	digits = get_digits(n);
-	reversed = get_reversed(n);
 	index = 0;
 	if (n == 0)
 	{
@@ -88,11 +87,14 @@ char	*ft_itoa(int n)
 	result = (char *)malloc(((digits + 1) * sizeof(char)));
 	if (result == NULL)
 		return (NULL);
-	result[digits] = '\0';
-	while (--digits >= 0)
-		result[digits] = reversed[index++];
+	while (n > 0)
+	{
+		result[digits--] = n % 10 + '0';
+		n /= 10;
+	}
 	if (n < 0)
 		result[0] = '-';
+	result[index] = '\0';
 	return (result);
 }
 
