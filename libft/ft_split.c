@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 20:59:43 by corin             #+#    #+#             */
-/*   Updated: 2023/10/21 16:39:14 by ccraciun         ###   ########.fr       */
+/*   Updated: 2023/10/21 16:40:14 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,9 @@ char	**ft_split(char const *s, char c)
 			result[index] = create_substring(s, c);
 			if (result[index] == NULL)
 			{
+				check_alloc_fail(result, index);
 				free(result);
-				return (check_alloc_fail(result, index));
+				return NULL;
 			}
 			s += substr_len(s, c);
 			index++;
