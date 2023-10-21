@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 20:59:43 by corin             #+#    #+#             */
-/*   Updated: 2023/10/21 18:20:48 by ccraciun         ###   ########.fr       */
+/*   Updated: 2023/10/21 18:21:59 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,8 @@ char	**ft_split(char const *s, char c)
 	char	**result;
 	char	*trimmed_s;
 
-	trimmed_s = ft_strtrim(s,&c);
 	index = 0;
-	result = (char **)malloc(sizeof(char *) * (count_words(trimmed_s, c) + 1));
-	free(trimmed_s);
+	result = (char **)malloc(sizeof(char *) * (count_words(s, c) + 1));
 	if (!s || !(result))
 		return (NULL);
 	while (*s)
