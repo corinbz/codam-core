@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 20:58:55 by corin             #+#    #+#             */
-/*   Updated: 2023/10/21 11:41:01 by ccraciun         ###   ########.fr       */
+/*   Updated: 2023/10/21 11:42:37 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,13 @@ int	ft_atoi(const char *str)
 	index = 0;
 	while (ft_isspace(str[index]))
 		index++;
-	while (str[index] == '-' || str[index] == '+')
+	if (str[index] == '-')
 	{
-		if(str[index] == '-')
-			sign *= -1;
+		sign = -1;
 		index++;
 	}
+	else if (str[index] == '+')
+		index++;
 	while (str[index] >= '0' && str[index] <= '9')
 	{
 		result = result * 10 + str[index] - '0';
