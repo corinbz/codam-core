@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 20:59:43 by corin             #+#    #+#             */
-/*   Updated: 2023/10/21 17:23:18 by ccraciun         ###   ########.fr       */
+/*   Updated: 2023/10/21 17:25:59 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,9 @@ char	**ft_split(char const *s, char c)
 		return (NULL);
 	while (*s)
 	{
-		if (*s == c)
+		while (*s == c && *s)
 			s++;
-		else
+		if(*s)
 		{
 			result[index] = create_substring(s, c);
 			if (result[index] == NULL)
