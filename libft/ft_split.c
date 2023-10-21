@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 20:59:43 by corin             #+#    #+#             */
-/*   Updated: 2023/10/21 17:55:54 by ccraciun         ###   ########.fr       */
+/*   Updated: 2023/10/21 17:56:23 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,17 +105,17 @@ char	**ft_split(char const *s, char c)
 	return (result);
 }
 
-int main()
-{
-	char **result = ft_split("hello", ' ');
-	int i = 0;
+// int main()
+// {
+// 	char **result = ft_split("hello", ' ');
+// 	int i = 0;
 
-	while(result[i] != NULL)
-	{
-		printf("index %d is %s\n",i,result[i]);
-		free(result[i]);
-		i++;
-	}
-	free(result[i]);
-	free(result);
-}
+// 	while(result[i] != NULL)
+// 	{
+// 		printf("index %d is %s\n",i,result[i]);
+// 		free(result[i]);
+// 		i++;
+// 	}
+// 	free(result[i]);
+// 	free(result);
+// }
