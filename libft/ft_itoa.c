@@ -6,31 +6,24 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 20:59:13 by corin             #+#    #+#             */
-/*   Updated: 2023/10/22 12:34:34 by ccraciun         ###   ########.fr       */
+/*   Updated: 2023/10/22 12:37:03 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <limits.h>
 
-static int	get_digits(int n)
+static int	digits(long int num)
 {
-	int			result;
-	long int	long_n;
+	size_t	count;
 
-	long_n = n;
-	result = 0;
-	// if (long_n < 0)
-	// {
-	// 	result++;
-	// 	long_n *= -1;
-	// }
-	while (long_n > 0)
+	count = 0;
+	while (num != 0)
 	{
-		long_n /= 10;
-		result += 1;
+		num = num / 10;
+		count++;
 	}
-	return (result);
+	return (count);
 }
 
 char	*ft_itoa(int n)
@@ -40,7 +33,7 @@ char	*ft_itoa(int n)
 	long int	num;
 
 	num = n;
-	i = get_digits(n);
+	i = digits(n);
 	if (n == 0)
 		i = 1;
 	if (n < 0)
@@ -60,6 +53,26 @@ char	*ft_itoa(int n)
 		str[0] = '-';
 	return (str);
 }
+// static int	get_digits(int n)
+// {
+// 	int			result;
+// 	long int	long_n;
+
+// 	long_n = n;
+// 	result = 0;
+// 	if (long_n < 0)
+// 	{
+// 		result++;
+// 		long_n *= -1;
+// 	}
+// 	while (long_n > 0)
+// 	{
+// 		long_n /= 10;
+// 		result += 1;
+// 	}
+// 	return (result);
+// }
+
 // static char	*get_reversed(int n)
 // {
 // 	char		*c;
