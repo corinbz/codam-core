@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 20:59:13 by corin             #+#    #+#             */
-/*   Updated: 2023/10/22 15:24:20 by ccraciun         ###   ########.fr       */
+/*   Updated: 2023/10/22 15:26:10 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static int	get_digits(int n)
 	return (result);
 }
 
-static char	*get_reversed(int n)
+char	*get_reversed(int n)
 {
 	char		c[100];
 	size_t		i;
