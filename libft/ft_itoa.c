@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 20:59:13 by corin             #+#    #+#             */
-/*   Updated: 2023/10/22 15:21:25 by ccraciun         ###   ########.fr       */
+/*   Updated: 2023/10/22 15:22:12 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ static char	*get_reversed(int n)
 	long int	long_n;
 
 	long_n = n;
-	c = malloc(100);
 	i = 0;
 	if (long_n < 0)
 	{
