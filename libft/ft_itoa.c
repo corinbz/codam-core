@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 20:59:13 by corin             #+#    #+#             */
-/*   Updated: 2023/10/22 13:46:33 by ccraciun         ###   ########.fr       */
+/*   Updated: 2023/10/22 13:56:54 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,33 +27,38 @@ static int	get_digits(int n)
 	return result;
 }
 
-char	*ft_itoa(int n)
+char *ft_itoa(int n) 
 {
-	bool sign;
-	int digits_count;
-	char *result;
+    int sign = 1;
+    int digits_count;
+    char *result;
 
-	sign = n < 0;
-	digits_count = get_digits(n) + sign;
-	result = (char *)malloc(sizeof(char) * (digits_count + 1));
-	if(!result)
-		return(result);
-	result[digits_count] = '\0';
-	if(sign)
-	{
-		*result = '-';
-		result[--digits_count] = -(n % 10) + '0';
-		n = (n / 10);
-	}
-	while( digits_count-- - sign)
-	{
-		result[digits_count] = n % 10 + '0';
-		n /= 10;
-	}
-	return (result);
+    if (n < 0) {
+        sign = -1;
+        n = -n;
+    }
+
+    digits_count = get_digits(n);
+    result = (char *)malloc(sizeof(char) * (digits_count + 2));
+    if (!result)
+        return result;
+
+    result[digits_count + 1] = '\0';
+
+    while (digits_count > 0) {
+        result[digits_count] = (n % 10) + '0';
+        n /= 10;
+        digits_count--;
+    }
+
+    if (sign == -1) {
+        result[0] = '-';
+    }
+
+    return result;
 }
 
 // int main()
 // {
-// 	printf("%d\n",get_digits(-100));
+// 	printf("%s\n",ft_itoa(-10004));
 // }
