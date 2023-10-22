@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 20:59:13 by corin             #+#    #+#             */
-/*   Updated: 2023/10/22 12:45:56 by ccraciun         ###   ########.fr       */
+/*   Updated: 2023/10/22 12:46:34 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,12 @@ char	*ft_itoa(int n)
 {
 	int		digits;
 	// char	*reversed;
-	size_t	index;
+	// size_t	index;
 	char	*result;
 
 	digits = get_digits(n);
 	// reversed = get_reversed(n);
-	index = 0;
+	// index = 0;
 	if (n == 0)
 	{
 		result = ft_itoa_zero();
