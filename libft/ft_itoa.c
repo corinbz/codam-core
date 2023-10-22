@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 20:59:13 by corin             #+#    #+#             */
-/*   Updated: 2023/10/22 15:23:48 by ccraciun         ###   ########.fr       */
+/*   Updated: 2023/10/22 15:24:20 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static char	*get_reversed(int n)
 		i++;
 	}
 	c[i] = '\0';
-	return (*c);
+	return (c);
 }
 
 static char	*ft_itoa_zero(void)
