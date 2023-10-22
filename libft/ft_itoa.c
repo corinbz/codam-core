@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 20:59:13 by corin             #+#    #+#             */
-/*   Updated: 2023/10/22 15:26:10 by ccraciun         ###   ########.fr       */
+/*   Updated: 2023/10/22 15:29:38 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,27 +49,43 @@ static int	get_digits(int n)
 	return (result);
 }
 
-char	*get_reversed(int n)
+char *get_reversed(int n)
 {
-	char		c[100];
-	size_t		i;
-	long int	long_n;
+    char c[100];
+    size_t i;
+    long int long_n;
 
-	long_n = n;
-	i = 0;
-	if (long_n < 0)
-	{
-		long_n *= -1;
-	}
-	while (long_n > 0)
-	{
-		c[i] = long_n % 10 + '0';
-		long_n /= 10;
-		i++;
-	}
-	c[i] = '\0';
-	return (c);
+    long_n = n;
+    i = 0;
+    if (long_n < 0)
+    {
+        long_n *= -1;
+    }
+    while (long_n > 0)
+    {
+        c[i] = long_n % 10 + '0';
+        long_n /= 10;
+        i++;
+    }
+    c[i] = '\0';
+
+    // Allocate memory for the result dynamically
+    char *result = (char *)malloc((i + 1) * sizeof(char));
+    if (result == NULL)
+    {
+        return NULL; // Error: Unable to allocate memory
+    }
+
+    // Copy the reversed string to the result
+    for (size_t j = 0; j < i; j++)
+    {
+        result[j] = c[i - j - 1];
+    }
+    result[i] = '\0';
+
+    return result;
 }
+
 
 static char	*ft_itoa_zero(void)
 {
