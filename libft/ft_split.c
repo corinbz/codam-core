@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 20:59:43 by corin             #+#    #+#             */
-/*   Updated: 2023/10/22 11:28:42 by ccraciun         ###   ########.fr       */
+/*   Updated: 2023/10/22 12:00:19 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ static char	*create_substring(const char *s, char c)
 		return (NULL);
 	else
 		ft_strlcpy(substr, s, len + 1);
-	free(substr);
 	return (substr);
 }
 
