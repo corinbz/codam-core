@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 20:59:13 by corin             #+#    #+#             */
-/*   Updated: 2023/10/22 14:29:12 by ccraciun         ###   ########.fr       */
+/*   Updated: 2023/10/22 15:20:47 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,55 +28,87 @@ static int	get_digits(int n)
 	}
 	return result;
 }
-// void reverse(char str[], int len)
+
+// static int	get_digits(int n)
 // {
-//     int start, end;
-//     char temp;
-// 	start = 0;
-// 	end = len -1;
-//     while(start < end) {
-//         temp = *(str+start);
-//         *(str+start) = *(str+end);
-//         *(str+end) = temp;
-// 		start++;
-// 		end--;
-//     }
+// 	int			result;
+// 	long int	long_n;
+
+// 	long_n = n;
+// 	result = 0;
+// 	if (long_n < 0)
+// 	{
+// 		result++;
+// 		long_n *= -1;
+// 	}
+// 	while (long_n > 0)
+// 	{
+// 		long_n /= 10;
+// 		result += 1;
+// 	}
+// 	return (result);
 // }
 
-char *ft_itoa(int n) 
+static char	*get_reversed(int n)
 {
-    int sign = 1;
-    int digits_count;
-    char *result;
-	int index;
+	char		*c;
+	size_t		i;
+	long int	long_n;
 
-    digits_count = get_digits(n);
-    result = (char *)malloc(sizeof(char) * (digits_count + 1));
-    if (result == NULL)
-		return NULL;
-	if (n < 0) 
+	long_n = n;
+	c = malloc(100);
+	i = 0;
+	if (long_n < 0)
 	{
-        sign = -1;
-		if(n == INT_MIN)
-			return ("-2147483648");
-        n = -n;
-    }
-    result[digits_count + 1] = '\0';
-	index = digits_count - 1;
-    while (n > 0) {
-        result[index] = (n % 10) + '0';
-        n /= 10;
-        index--;
-    }
+		long_n *= -1;
+	}
+	while (long_n > 0)
+	{
+		c[i] = long_n % 10 + '0';
+		long_n /= 10;
+		i++;
+	}
+	c[i] = '\0';
+	return (c);
+}
 
-    if (sign == -1) {
-        result[0] = '-';
-    }
-	result[digits_count] = '\0';
-    return result;
+static char	*ft_itoa_zero(void)
+{
+	char	*result;
+
+	result = (char *)malloc(2);
+	result[0] = '0';
+	result[1] = '\0';
+	return (result);
+}
+
+char	*ft_itoa(int n)
+{
+	int		digits;
+	char	*reversed;
+	size_t	index;
+	char	*result;
+
+	digits = get_digits(n);
+	reversed = get_reversed(n);
+	index = 0;
+	if (n == 0)
+	{
+		result = ft_itoa_zero();
+		return (result);
+	}
+	result = (char *)malloc(((digits + 1) * sizeof(char)));
+	if (result == NULL)
+		return (NULL);
+	result[digits] = '\0';
+	while (--digits >= 0)
+		result[digits] = reversed[index++];
+	if (n < 0)
+		result[0] = '-';
+	return (result);
 }
 
 // int main()
 // {
-// 	printf("%s\n",ft_itoa(10));
+// 	printf("%s\n",ft_itoa(INT_MIN));
 // }
