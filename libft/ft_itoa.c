@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 20:59:13 by corin             #+#    #+#             */
-/*   Updated: 2023/10/22 15:20:47 by ccraciun         ###   ########.fr       */
+/*   Updated: 2023/10/22 15:21:25 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,40 +14,40 @@
 #include <limits.h>
 #include <stdbool.h>
 
-static int	get_digits(int n)
-{
-	int			result;
-	
-	if (n == 0)
-		return (1);
-	result = !n;
-	while(n)
-	{
-		n /= 10;
-		result++;
-	}
-	return result;
-}
-
 // static int	get_digits(int n)
 // {
 // 	int			result;
-// 	long int	long_n;
-
-// 	long_n = n;
-// 	result = 0;
-// 	if (long_n < 0)
+	
+// 	if (n == 0)
+// 		return (1);
+// 	result = !n;
+// 	while(n)
 // 	{
+// 		n /= 10;
 // 		result++;
-// 		long_n *= -1;
 // 	}
-// 	while (long_n > 0)
-// 	{
-// 		long_n /= 10;
-// 		result += 1;
-// 	}
-// 	return (result);
+// 	return result;
 // }
+
+static int	get_digits(int n)
+{
+	int			result;
+	long int	long_n;
+
+	long_n = n;
+	result = 0;
+	if (long_n < 0)
+	{
+		result++;
+		long_n *= -1;
+	}
+	while (long_n > 0)
+	{
+		long_n /= 10;
+		result += 1;
+	}
+	return (result);
+}
 
 static char	*get_reversed(int n)
 {
