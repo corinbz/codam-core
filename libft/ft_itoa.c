@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 20:59:13 by corin             #+#    #+#             */
-/*   Updated: 2023/10/22 12:46:34 by ccraciun         ###   ########.fr       */
+/*   Updated: 2023/10/22 12:47:04 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ char	*ft_itoa(int n)
 	return (result);
 }
 
-int main()
-{
-	printf("%s\n",ft_itoa(INT_MIN));
-}
+// int main()
+// {
+// 	printf("%s\n",ft_itoa(INT_MIN));
+// }
