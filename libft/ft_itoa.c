@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 20:59:13 by corin             #+#    #+#             */
-/*   Updated: 2023/10/22 13:45:28 by ccraciun         ###   ########.fr       */
+/*   Updated: 2023/10/22 13:46:33 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,11 @@ char	*ft_itoa(int n)
 		return(result);
 	result[digits_count] = '\0';
 	if(sign)
+	{
 		*result = '-';
 		result[--digits_count] = -(n % 10) + '0';
 		n = (n / 10);
+	}
 	while( digits_count-- - sign)
 	{
 		result[digits_count] = n % 10 + '0';
