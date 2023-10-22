@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 20:59:13 by corin             #+#    #+#             */
-/*   Updated: 2023/10/22 14:18:59 by ccraciun         ###   ########.fr       */
+/*   Updated: 2023/10/22 14:19:39 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char *ft_itoa(int n)
 	if (n == 0)
 		return ("0");
     result = (char *)malloc(sizeof(char) * (digits_count + 1));
-    if (!result)
+    if (result == '\0')
         return result;
 	if (n < 0) 
 	{
