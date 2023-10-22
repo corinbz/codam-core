@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 20:59:13 by corin             #+#    #+#             */
-/*   Updated: 2023/10/22 13:56:54 by ccraciun         ###   ########.fr       */
+/*   Updated: 2023/10/22 14:01:43 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,16 @@ char *ft_itoa(int n)
     int digits_count;
     char *result;
 
-    if (n < 0) {
-        sign = -1;
-        n = -n;
-    }
-
     digits_count = get_digits(n);
-    result = (char *)malloc(sizeof(char) * (digits_count + 2));
+    result = (char *)malloc(sizeof(char) * (digits_count + 1));
     if (!result)
         return result;
-
+	if (n < 0) {
+        sign = -1;
+		if(n == INT_MIN)
+			return ("-2147483648");
+        n = -n;
+    }
     result[digits_count + 1] = '\0';
 
     while (digits_count > 0) {
@@ -58,7 +58,7 @@ char *ft_itoa(int n)
     return result;
 }
 
-// int main()
-// {
-// 	printf("%s\n",ft_itoa(-10004));
-// }
+int main()
+{
+	printf("%s\n",ft_itoa(INT_MIN));
+}
