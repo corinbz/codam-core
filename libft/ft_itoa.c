@@ -6,13 +6,12 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 20:59:13 by corin             #+#    #+#             */
-/*   Updated: 2023/10/22 15:34:40 by ccraciun         ###   ########.fr       */
+/*   Updated: 2023/10/28 13:36:08 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <limits.h>
-#include <stdbool.h>
 
 static int	get_digits(int n)
 {

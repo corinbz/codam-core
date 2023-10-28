@@ -6,14 +6,14 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 15:43:13 by ccraciun          #+#    #+#             */
-/*   Updated: 2023/10/15 16:19:27 by ccraciun         ###   ########.fr       */
+/*   Updated: 2023/10/28 13:36:37 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <limits.h>
 
-void	ft_put_int(long int a, int fd)
+static void	ft_put_int(long int a, int fd)
 {
 	char	c;
 

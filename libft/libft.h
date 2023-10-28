@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 21:23:39 by corin             #+#    #+#             */
-/*   Updated: 2023/10/15 16:51:18 by ccraciun         ###   ########.fr       */
+/*   Updated: 2023/10/28 13:40:57 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
-size_t				ft_strlen_const(const char *str);
 int					ft_atoi(const char *str);
 void				ft_bzero(void *s, size_t n);
 int					ft_isalnum(int c);
@@ -61,7 +60,5 @@ void				ft_putnbr_fd(int nb, int fd);
 void				ft_putstr_fd(char *s, int fd);
 void				ft_putendl_fd(char *s, int fd);
 void				ft_striteri(char *s, void (*f)(unsigned int, char *));
-// bonus part
-// t_list				*ft_lstnew(void *content);
 
 #endif

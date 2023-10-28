@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 21:00:57 by corin             #+#    #+#             */
-/*   Updated: 2023/10/15 13:52:40 by ccraciun         ###   ########.fr       */
+/*   Updated: 2023/10/28 13:39:03 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	*ft_strtrim(const char *s1, const char *set)
 
 	i = 0;
 	begin = 0;
-	end = ft_strlen_const(s1);
+	end = ft_strlen((char *)s1);
 	while (s1[begin] != '\0' && is_char_in_set(s1[begin], set))
 		begin++;
 	while (end > begin && is_char_in_set(s1[end - 1], set))

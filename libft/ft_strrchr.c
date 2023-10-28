@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 21:00:55 by corin             #+#    #+#             */
-/*   Updated: 2023/10/14 16:44:09 by ccraciun         ###   ########.fr       */
+/*   Updated: 2023/10/28 13:38:50 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_strrchr(const char *str, int character)
 
 	char_c = character;
 	char_s = (char *)str;
-	index = ft_strlen_const(str);
+	index = ft_strlen((char *)str);
 	while (index >= 0)
 	{
 		if (char_s[index] == char_c)
