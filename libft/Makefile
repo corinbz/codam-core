@@ -6,15 +6,14 @@
 #    By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/10 21:27:13 by corin             #+#    #+#              #
-#    Updated: 2023/10/28 13:46:52 by ccraciun         ###   ########.fr        #
+#    Updated: 2023/10/28 13:55:21 by ccraciun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 HEADER = libft.h
 
-SRC = ft_isspace.c \
-      ft_atoi.c \
+SRC = ft_atoi.c \
       ft_bzero.c \
       ft_isalnum.c \
       ft_isalpha.c \
@@ -49,8 +48,7 @@ SRC = ft_isspace.c \
       ft_putendl_fd.c \
       ft_striteri.c
 
-OBJS = ft_isspace.o \
-       ft_atoi.o \
+OBJS = ft_atoi.o \
        ft_bzero.o \
        ft_isalnum.o \
        ft_isalpha.o \
