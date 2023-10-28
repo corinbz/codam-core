@@ -6,7 +6,7 @@
 #    By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/10 21:27:13 by corin             #+#    #+#              #
-#    Updated: 2023/10/28 13:40:41 by ccraciun         ###   ########.fr        #
+#    Updated: 2023/10/28 13:46:52 by ccraciun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,6 @@ SRC = ft_isspace.c \
       ft_substr.c \
       ft_tolower.c \
       ft_toupper.c \
-      ft_lstnew.c \
       ft_calloc.c \
       ft_strdup.c \
       ft_putchar_fd.c \
@@ -78,7 +77,6 @@ OBJS = ft_isspace.o \
        ft_substr.o \
        ft_tolower.o \
        ft_toupper.o \
-       ft_lstnew.o \
        ft_calloc.o \
        ft_strdup.o \
        ft_putchar_fd.o \
