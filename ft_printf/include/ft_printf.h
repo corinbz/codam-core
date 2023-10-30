@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: corin <corin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/10 21:00:01 by corin             #+#    #+#             */
-/*   Updated: 2023/10/10 21:00:02 by corin            ###   ########.fr       */
+/*   Created: 2023/10/30 10:57:10 by corin             #+#    #+#             */
+/*   Updated: 2023/10/30 13:18:02 by corin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <string.h>
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-char	*ft_strchr(const char *s, int c)
-{
-	char	char_c;
-	char	*char_s;
-	int		i;
+# include <limits.h>
+# include <stdarg.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
 
-	i = 0;
-	char_s = (char *)s;
-	char_c = c;
-	while (char_s[i] != char_c)
-	{
-		if (char_s[i] == '\0')
-		{
-			return (NULL);
-		}
-		i++;
-	}
-	return ((char *)char_s + i);
-}
+
+int		ft_strlen(const char *str);
+int		ft_putchar(char c);
+int		ft_putnbr(int nb);
+int	    ft_putstr(char *str);
+int	    ft_putaddress(long unsigned int n);
+int	    ft_putaddress_big(long unsigned int n);
+int		ft_printf(const char *format, ...);
+
+#endif
