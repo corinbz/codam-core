@@ -6,12 +6,12 @@
 /*   By: corin <corin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 16:28:08 by ccraciun          #+#    #+#             */
-/*   Updated: 2023/10/30 13:46:02 by corin            ###   ########.fr       */
+/*   Updated: 2023/10/31 13:29:55 by corin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
-int ft_putaddress_big(long unsigned int n);
+// int ft_putaddress_big(long unsigned int n);
 static int apply_format (const char *format, va_list args, int i)
 {
 	int res;
@@ -23,18 +23,15 @@ static int apply_format (const char *format, va_list args, int i)
 	else if (format[i] == 's')
 		res += ft_putstr(va_arg(args, char *));
 	else if (format[i] == 'p')
-	{
-		res += ft_putstr("0x");
 		res += ft_putaddress(va_arg(args, long unsigned int));
-	}
 	else if (format[i] == 'i')
 		res += ft_putnbr(va_arg(args, int));
 	else if (format[i] == 'u')
-		res += ft_putnbr(va_arg(args, unsigned int));
+		res += ft_put_unsigned_nbr(va_arg(args, unsigned int));
 	else if (format[i] == 'x')
-		res += ft_putaddress(va_arg(args, unsigned int));
+		res += ft_put_hex(va_arg(args, unsigned int));
 	else if (format[i] == 'X')
-		res += ft_putaddress_big(va_arg(args, unsigned int));
+		res += ft_put_hex(va_arg(args, unsigned int));
 	else if (format[i] == '%')
 		res += ft_putchar('%');
 	return (res);
