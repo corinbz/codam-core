@@ -6,7 +6,7 @@
 /*   By: corin <corin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 11:22:43 by corin             #+#    #+#             */
-/*   Updated: 2023/11/01 11:27:34 by corin            ###   ########.fr       */
+/*   Updated: 2023/11/03 12:18:44 by corin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 int	ft_putnbr(int nb)
 {
 	long int	lnb;
-	int digits = 0;
+	int			digits;
 
+	digits = 0;
 	lnb = nb;
 	if (nb <= INT_MAX || nb >= INT_MIN)
 	{
@@ -27,12 +28,9 @@ int	ft_putnbr(int nb)
 			lnb = -lnb;
 		}
 		if (lnb >= 10)
-		{
 			digits += ft_putnbr(lnb / 10);
-		}
 		ft_putchar(lnb % 10 + '0');
 		digits++;
 	}
 	return (digits);
-
 }

@@ -6,7 +6,7 @@
 /*   By: corin <corin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 11:25:51 by corin             #+#    #+#             */
-/*   Updated: 2023/11/01 11:27:24 by corin            ###   ########.fr       */
+/*   Updated: 2023/11/03 12:20:13 by corin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 
 int	ft_put_hex(long unsigned int nb)
 {
-	int digits = 0;
+	int	digits;
+
+	digits = 0;
 	if (nb == 0)
-	{
-		ft_putstr("0");
-		return (1);
-	}
+		return (ft_putchar('0'));
 	else if (nb < 16)
 	{
 		if (nb < 10)
@@ -37,18 +36,16 @@ int	ft_put_hex(long unsigned int nb)
 			ft_putchar(nb % 16 + 'a' - 10);
 		digits++;
 	}
-	return digits;
+	return (digits);
 }
-
 
 int	ft_put_hex_up(long unsigned int nb)
 {
-	int digits = 0;
+	int	digits;
+
+	digits = 0;
 	if (nb == 0)
-	{
-		ft_putstr("0");
-		return (1);
-	}
+		return (ft_putchar('0'));
 	else if (nb < 16)
 	{
 		if (nb < 10)
@@ -66,5 +63,5 @@ int	ft_put_hex_up(long unsigned int nb)
 			ft_putchar(nb % 16 + 'A' - 10);
 		digits++;
 	}
-	return digits;
+	return (digits);
 }

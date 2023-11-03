@@ -6,14 +6,16 @@
 /*   By: corin <corin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 16:28:08 by ccraciun          #+#    #+#             */
-/*   Updated: 2023/11/01 11:18:08 by corin            ###   ########.fr       */
+/*   Updated: 2023/11/03 12:12:29 by corin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
-static int apply_format (char format, va_list args)
+
+static int	apply_format(char format, va_list args)
 {
-	int res;
+	int	res;
+
 	res = 0;
 	if (format == 'c')
 		res = ft_putchar((char)va_arg(args, int));
@@ -39,10 +41,10 @@ static int apply_format (char format, va_list args)
 int	ft_printf(const char *format, ...)
 {
 	int		i;
-	int res;
+	int		res;
 	va_list	args;
 
-	if(!format)
+	if (!format)
 		return (-1);
 	i = 0;
 	res = 0;
@@ -54,7 +56,7 @@ int	ft_printf(const char *format, ...)
 			i++;
 			res += apply_format((char)format[i], args);
 			i++;
-			continue;
+			continue ;
 		}
 		res += ft_putchar(format[i]);
 		i++;

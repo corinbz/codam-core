@@ -6,17 +6,18 @@
 /*   By: corin <corin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 11:23:22 by corin             #+#    #+#             */
-/*   Updated: 2023/11/01 11:27:28 by corin            ###   ########.fr       */
+/*   Updated: 2023/11/03 12:20:53 by corin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 
-int ft_put_unsigned_nbr(unsigned int nb)
+int	ft_put_unsigned_nbr(unsigned int nb)
 {
 	unsigned int	unb;
-	int digits = 0;
+	int				digits;
 
+	digits = 0;
 	unb = nb;
 	if (nb <= UINT_MAX)
 	{
@@ -28,5 +29,4 @@ int ft_put_unsigned_nbr(unsigned int nb)
 		digits++;
 	}
 	return (digits);
-
 }

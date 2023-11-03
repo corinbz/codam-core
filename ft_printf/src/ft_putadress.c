@@ -6,7 +6,7 @@
 /*   By: corin <corin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 11:25:10 by corin             #+#    #+#             */
-/*   Updated: 2023/11/01 11:26:59 by corin            ###   ########.fr       */
+/*   Updated: 2023/11/03 12:19:48 by corin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 
 int	ft_putaddress(long unsigned int nb)
 {
-	int digits = 0;
+	int	digits;
+
+	digits = 0;
 	if (nb == 0)
-	{
-		ft_putstr("(nil)");
-		return (5);
-	}
+		return (ft_putstr("(nil)"));
 	else if (nb < 16)
 	{
 		ft_putstr("0x");
@@ -38,17 +37,16 @@ int	ft_putaddress(long unsigned int nb)
 			ft_putchar(nb % 16 + 'a' - 10);
 		digits++;
 	}
-	return digits;
+	return (digits);
 }
 
-int ft_putaddress_big(long unsigned int nb)
+int	ft_putaddress_big(long unsigned int nb)
 {
-	int digits = 0;
+	int	digits;
+
+	digits = 0;
 	if (nb == 0)
-	{
-		ft_putstr("(nil)");
-		return (5);
-	}
+		return (ft_putstr("(nil)"));
 	else if (nb < 16)
 	{
 		ft_putstr("0x");
@@ -67,5 +65,5 @@ int ft_putaddress_big(long unsigned int nb)
 			ft_putchar(nb % 16 + 'A' - 10);
 		digits++;
 	}
-	return digits;
+	return (digits);
 }
