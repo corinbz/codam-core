@@ -85,71 +85,114 @@ char *ft_substr(char const *s, unsigned int start, size_t len) {
   return (result);
 }
 
-void read_and_join(int fd, char **curr_line) {
-  int bytes_read;
-  char *buffer;
-  buffer = malloc(sizeof(char) * BUFFER_SIZE + 1);
-  bytes_read = read(fd, buffer, BUFFER_SIZE);
-  if (bytes_read <= 0)
-    return;
-  buffer[bytes_read] = '\0';
-  *curr_line = ft_strjoin(*curr_line, buffer);
-  free(buffer);
-}
+char *ft_strchr(const char *s, int c) {
+  char char_c;
+  char *char_s;
+  int i;
 
-int found_new_line(char *str) {
-  if (!str)
-    return (0);
-  while (*str) {
-    if (*str == '\n')
-      return (1);
-    str++;
+  i = 0;
+  char_s = (char *)s;
+  char_c = c;
+  while (char_s[i] != char_c) {
+    if (char_s[i] == '\0') {
+      return (NULL);
+    }
+    i++;
   }
-  return (0);
+  return ((char *)char_s + i);
 }
 
-// char *get_next_line(int fd) {
-//   static char *curr_line = NULL;
-//   size_t nl_position = 0;
-//   char *temp;
-//   size_t i = 0;
-//   if (fd < 0 || BUFFER_SIZE <= 0)
-//     return (NULL);
-//   if (curr_line == NULL)
-//     curr_line = ft_strjoin("", "");
-//   while (!found_new_line(curr_line)) {
-//     read_and_join(fd, &curr_line);
-//     if (ft_strlen(curr_line) == 0) {
-//       free(curr_line);
-//       return NULL;
-//     }
-//   }
-//   while (curr_line[nl_position] != '\n')
-//     nl_position++;
-//   temp = (char *)malloc((nl_position + 2) * sizeof(char));
-//   if (!temp)
-//     return (NULL);
-//   while (i <= nl_position) {
-//     temp[i] = curr_line[i];
-//     i++;
-//   }
-//   temp[nl_position + 1] = '\0';
-//   curr_line =
-//       ft_substr(curr_line, nl_position + 1, ft_strlen(curr_line) -
-//       nl_position);
-//   return (temp);
-// }
-char *get_next_line(int fd) {
-  static char *curr_line = NULL;
-  size_t nl_position;
-  size_t i;
+void ft_bzero(void *s, size_t n) {
+  while (n > 0) {
+    *(char *)(s) = '\0';
+    s++;
+    n--;
+  }
+}
+void *ft_calloc(size_t num_elements, size_t element_size) {
+  size_t total_size;
+  void *result;
 
-  if (fd <= 0 || BUFFER_SIZE <= 0)
+  total_size = num_elements * element_size;
+  result = malloc(total_size);
+  if (result != NULL)
+    ft_bzero(result, total_size);
+  return (result);
+}
+char *add_chunk_text(char *text, char *chunk_text) {
+  char *temp;
+
+  temp = ft_strjoin(text, chunk_text);
+  free(text);
+  return (temp);
+}
+
+char *read_file(char *text, int fd) {
+  char *chunk_text;
+  int bytes_read;
+
+  chunk_text = ft_calloc((BUFFER_SIZE + 1), sizeof(char));
+  if (!chunk_text)
     return NULL;
-  if (curr_line == NULL)
-    curr_line = ft_strjoin("", "");
-  read_and_join(fd, &curr_line);
-  return (curr_line);
+  bytes_read = 1;
+  while (bytes_read > 0) {
+    bytes_read = read(fd, chunk_text, BUFFER_SIZE);
+    if (bytes_read <= 0)
+      return (free(chunk_text), NULL);
+    chunk_text[bytes_read] = '\0';
+    text = add_chunk_text(text, chunk_text);
+    if (ft_strchr(text, '\n'))
+      break;
+  }
+  free(chunk_text);
+  return (text);
+}
+
+char *get_line(char *text) {
+  char *clean_line;
+  size_t nl_position = 0;
+  size_t index = 0;
+  while (text[index]) {
+    if (text[index] == '\n') {
+      ++nl_position;
+      break;
+    }
+    index++;
+    ++nl_position;
+  }
+  clean_line = ft_substr(text, 0, nl_position);
+  return clean_line;
+}
+
+char *get_remainer_text(char *text) {
+  char *remainder;
+  size_t nl_position = 0;
+  size_t index = 0;
+  while (text[index]) {
+    if (text[index] == '\n') {
+      ++nl_position;
+      break;
+    }
+    index++;
+    ++nl_position;
+  }
+  remainder = ft_substr(text, nl_position, (ft_strlen(text) - nl_position));
+  return remainder;
+}
+char *get_next_line(int fd) {
+  static char *text;
+  char *line;
+  if (fd < 0 || read(fd, NULL, 0) < 0 || BUFFER_SIZE <= 0)
+    return (NULL);
+  if (!text)
+    text = ft_calloc(1, sizeof(char));
+  if (!ft_strchr(text, '\n'))
+    text = read_file(text, fd);
+  if (!text)
+    return (free(text), NULL);
+  line = get_line(text);
+  text = get_remainer_text(text);
+  return (line);
 }
 int main(int argc, char *argv[]) {
   int fd = open("text.txt", O_RDONLY);
@@ -158,6 +201,8 @@ int main(int argc, char *argv[]) {
     printf("%s", line);
     free(line);
   }
+  // line = get_next_line(fd);
+  // printf("%s", line);
   close(fd);
   return EXIT_SUCCESS;
 }
