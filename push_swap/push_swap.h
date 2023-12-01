@@ -5,10 +5,11 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-//** DOUBLE LINKED LIST **
+//** DOUBLY LINKED LIST **
 typedef struct node
 {
-	int data;
+	long long data;
+	size_t index;
 	struct node* next;
 	struct node* prev;
 }node;
