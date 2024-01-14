@@ -5,7 +5,7 @@ NAME = push_swap
 LIBFT = ./libft/libft.a
 
 # Flags
-CFLAGS = -Wall -Wextra 
+CFLAGS = -Wall
 
 # Src files
 SRC = $(wildcard *.c)
@@ -14,11 +14,11 @@ OBJ_DIR = ./obj/
 OBJS = $(addprefix $(OBJ_DIR), $(notdir $(SRC:.c=.o)))
 
 $(LIBFT):
-	@make -C ./libft
+	make -C ./libft
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) $(LIBFT)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
 
 $(OBJ_DIR)%.o: %.c

@@ -16,4 +16,6 @@ typedef struct node
 }node;
 
 // ** FUNCTION PROTOTYPES **
+node* append_to_end(node *head,int i);
+node* append_to_empty(node *head, int i);
 #endif
