@@ -1,10 +1,11 @@
 #include "push_swap.h"
 #include "./libft/libft.h"
-#include <stdlib.h>
-int main(int ac, char *av[])
+
+int main(int ac, char **av)
 {
 	int i = 1;
 	node *a = NULL;
+	// node *b = NULL;
 	if(ac == 1 || (ac == 2 && !av[1][0]))
 		return (1);
 	else if (ac == 2)
@@ -12,17 +13,15 @@ int main(int ac, char *av[])
 		av = ft_split(av[1], ' ');
 		i = 0;
 		}
-	while (av[i]) 
+	while (av[i] && !are_duplicates(av)) 
 	{
 		// printf("%i\n",ft_atoi(av[i]));
 		a = append_to_end(a, ft_atoi(av[i]));
 		i++;
 	}
-	while(a!=NULL)
-	{
-		// printf("got\n");
-		printf("%li\n",a->index);
-		a = a->next;
-	}
+	// printf("stack a has %lu elements",count_elements(a));
+	assign_index(a,count_elements(a));
+	display_elements(a);
+	printf("%i\n",is_sorted(a));
 	return (0);
 }

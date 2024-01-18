@@ -5,10 +5,14 @@ NAME = push_swap
 LIBFT = ./libft/libft.a
 
 # Flags
-CFLAGS = -Wall
+CFLAGS = -Wall -g
 
 # Src files
-SRC = $(wildcard *.c)
+SRC = push_elements.c \
+      stacks_helper_functions.c \
+	  swap_stacks.c \
+	  check_input.c \
+	  main.c
 
 OBJ_DIR = ./obj/
 OBJS = $(addprefix $(OBJ_DIR), $(notdir $(SRC:.c=.o)))
