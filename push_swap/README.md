@@ -9,6 +9,6 @@ todo functions:
 4. push_a and push_b functions [x]
 5. swap stacks function [-]
 6. rotates stacks [x]
-7. reverse rotate stacks []
+7. reverse rotate stacks [x]
 8. sort stack of size 5 or less []
 9. sort stack of size > 5 []
