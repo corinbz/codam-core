@@ -100,7 +100,7 @@ void	assign_index(node *stack_a, int stack_size)
 				ptr = ptr->next;
 		}
 		if (highest != NULL)
-			highest->index = stack_size;
+            highest->index = stack_size;
 	}
 }
 

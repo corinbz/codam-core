@@ -12,3 +12,5 @@ todo functions:
 7. reverse rotate stacks [x]
 8. sort stack of size 5 or less []
 9. sort stack of size > 5 []
+
+Algorithm functions:
