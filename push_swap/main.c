@@ -22,6 +22,7 @@ int main(int ac, char **av)
 	// printf("stack a has %lu elements",count_elements(a));
 	assign_index(a,count_elements(a));
 	display_elements(a);
-	printf("%i\n",is_sorted(a));
+	reverse_rotate(&a);
+	display_elements(a);
 	return (0);
 }

@@ -12,6 +12,9 @@ SRC = push_elements.c \
       stacks_helper_functions.c \
 	  swap_stacks.c \
 	  check_input.c \
+	  errors.c \
+	  rotate_stacks.c \
+	  reverse_rotate_stacks.c \
 	  main.c
 
 OBJ_DIR = ./obj/

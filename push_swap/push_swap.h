@@ -40,6 +40,8 @@ int are_duplicates(char **av);
 //algorithm stuff
 
 int is_sorted(node *head);
+void rotate(node **head);
+void reverse_rotate(node **head);
 
 
 #endif
