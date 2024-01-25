@@ -5,7 +5,7 @@ int main(int ac, char **av)
 {
 	int i = 1;
 	node *a = NULL;
-	// node *b = NULL;
+	node *b = NULL;
 	if(ac == 1 || (ac == 2 && !av[1][0]))
 		return (1);
 	else if (ac == 2)
@@ -21,8 +21,8 @@ int main(int ac, char **av)
 	}
 	// printf("stack a has %lu elements",count_elements(a));
 	assign_index(a,count_elements(a));
+	sort_3(a,b);
 	display_elements(a);
-	reverse_rotate(&a);
-	display_elements(a);
+	// display_elements(b);
 	return (0);
 }

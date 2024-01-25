@@ -117,7 +117,7 @@ int is_sorted(node *head)
                 head = head->next;
                 continue;
             }
-            return (0);
+            return (1);
         }
-    return (1);
+    return (0);
 }
