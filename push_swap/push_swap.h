@@ -6,6 +6,8 @@
 #include <stdio.h>
 #include "./libft/libft.h"
 #include <limits.h>
+#include <unistd.h>
+#include <stdbool.h> // Include the necessary header file to define the "bool" type
 
 //** DOUBLY LINKED LIST **
 typedef struct node
@@ -30,8 +32,9 @@ node* append_to_start(node *head, long long i);
 size_t count_elements(node *head);
 void assign_index(node *stack_a, int stack_size);
 void display_index(node *head);
-void ft_swap(node *head);
+void swap(node **head);
 void display_elements(node *head);
+node *get_last(node *head);
 
 // check valid input
 
@@ -39,9 +42,11 @@ int are_duplicates(char **av);
 
 //algorithm stuff
 
-int is_sorted(node *head);
+bool	stack_sorted(node *stack);
 void rotate(node **head);
 void reverse_rotate(node **head);
-
+int	get_min(node **stack, int val);
+node	*find_max(node *stack);
+void sort_3(node **a);
 
 #endif

@@ -7,14 +7,10 @@ void rotate(node **head)
         return;
     }
 
-    node *last = *head;
-    while (last->next != NULL) {
-        last = last->next;
-    }
-
+    node *last = get_last(*head);
     last->next = *head;
-    (*head)->prev = last;
     *head = (*head)->next;
     (*head)->prev = NULL;
+    last->next->prev = last;
     last->next->next = NULL;
 }

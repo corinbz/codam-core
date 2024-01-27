@@ -104,20 +104,22 @@ void	assign_index(node *stack_a, int stack_size)
 	}
 }
 
-int is_sorted(node *head)
+bool	stack_sorted(node *stack) //Define a function that checks if the stack is sorted in ascending order
 {
-    // node *temp = head;
-    if (head == NULL)
-        return (1);
+	if (!stack)
+		return (1);
+	while (stack->next) //Loop until the end of the stack is reached
+	{
+		if (stack->index > stack->next->index) //Check if the current value is larger than the next node's value, indicating it is out of sort
+			return (false);
+		stack = stack->next; //If not, move to the next node for processing
+	}
+	return (true);
+}
+
+node *get_last(node *head)
+{
     while(head->next)
-    {
-            printf("comparing %lu with %lu\n",head->index,head->next->index);
-            if (head->index < head->next->index)
-            {
-                head = head->next;
-                continue;
-            }
-            return (1);
-        }
-    return (0);
+        head = head->next;
+    return (head);
 }

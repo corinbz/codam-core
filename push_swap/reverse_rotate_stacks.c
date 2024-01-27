@@ -10,21 +10,13 @@
  */
 void reverse_rotate(node **head)
 {
-    // Check if the list is empty or has only one element
     if (*head == NULL || (*head)->next == NULL) {
         return;
     }
-
-    // Traverse the list to find the last element
-    node *last = *head;
-    while (last->next != NULL) {
-        last = last->next;
-    }
-
-    // Rotate the list to the right
-    last->next = *head;
-    (*head)->prev = last;
-    *head = last;
+    node *last = get_last(*head);
     last->prev->next = NULL;
     last->prev = NULL;
+    last->next = *head;
+    *head = last;
+    last->next->prev = last;
 }
