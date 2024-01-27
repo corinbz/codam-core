@@ -19,7 +19,7 @@ typedef struct node
 }node;
 
 // push
-void push(node **src, node **dest);
+void push(node **src, node **dest, char a);
 
 // ** FUNCTION PROTOTYPES **
 
@@ -49,4 +49,8 @@ int	get_min(node **stack, int val);
 node	*find_max(node *stack);
 void sort_3(node **a);
 
+// radix sort
+
+int check_max_bits(node **stack);
+void radix_sort(node **a,node **b);
 #endif

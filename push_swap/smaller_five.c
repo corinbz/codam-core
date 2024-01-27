@@ -23,7 +23,7 @@ node	*find_max(node *stack) //Define a function that searches a stack and return
 
 	if (!stack)
 		return (NULL);
-	max = LONG_MIN; //Assign to the biggest value so far, the max long integer
+	max = 0; //Assign to the biggest value so far, the max long integer
 	while (stack) //Loop until the end of the stack is reached
 	{
 		if (stack->index > max) //Check if the current node value is smaller than the biggest so far

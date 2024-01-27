@@ -16,6 +16,7 @@ SRC = push_elements.c \
 	  rotate_stacks.c \
 	  reverse_rotate_stacks.c \
 	  smaller_five.c \
+	  radix_functions.c \
 	  main.c
 
 OBJ_DIR = ./obj/
