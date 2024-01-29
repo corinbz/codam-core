@@ -18,6 +18,8 @@ typedef struct node
 	struct node* prev;
 }node;
 
+//error hadling
+void display_error(void);
 // push
 void push(node **src, node **dest, char a);
 
@@ -47,7 +49,7 @@ void rotate(node **head);
 void reverse_rotate(node **head);
 int	get_min(node **stack, int val);
 node	*find_max(node *stack);
-void sort_3(node **a);
+void sort_three(node **a);
 
 // radix sort
 

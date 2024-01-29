@@ -13,7 +13,7 @@ int are_duplicates(char **av)
             // printf("i is %i\nj is %i\n",i,j);
             // printf("comparing %i with %i\n",atoi(av[i]),atoi(av[j]));
             if (atoi(av[i]) == atoi(av[j]))
-                return (1);
+                display_error();
             j++;
         }
         i++;

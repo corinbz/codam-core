@@ -35,7 +35,7 @@ node	*find_max(node *stack) //Define a function that searches a stack and return
 	}
 	return (max_node);
 }
-void sort_3(node **a)
+void sort_three(node **a)
 {
 	node	*biggest_node; //To store a pointer to the biggest node in stack `a`
 
