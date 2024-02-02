@@ -47,9 +47,11 @@ int are_duplicates(char **av);
 bool	stack_sorted(node *stack);
 void rotate(node **head);
 void reverse_rotate(node **head);
-int	get_min(node **stack, int val);
+node	*find_min(node *stack);
 node	*find_max(node *stack);
 void sort_three(node **a);
+void sort_four(node **a,node **b);
+void sort_five(node **a,node **b);
 
 // radix sort
 

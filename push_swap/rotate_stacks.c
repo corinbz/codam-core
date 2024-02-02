@@ -13,5 +13,5 @@ void rotate(node **head)
     (*head)->prev = NULL;
     last->next->prev = last;
     last->next->next = NULL;
-    printf("ra\n");
+    write(1, "ra\n", 3);
 }

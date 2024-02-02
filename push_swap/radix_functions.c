@@ -48,11 +48,6 @@ void radix_sort(node **a,node **b)
             j++;
         }
         j = 0;
-        while (count_elements(*a) > 0)
-        {
-            // printf("pushing %lu to b when &1 is 0\n",(*a)->index);
-            push(a, b, 'b');
-        }
         while (count_elements(*b) > 0)
         {
             // printf("stack b:\n");

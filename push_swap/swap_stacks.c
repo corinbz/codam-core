@@ -11,4 +11,5 @@ void swap(node **head)
 		(*head)->next->prev = (*head)->prev; //If so, update its `prev` pointer to point back to the `new head`
 	(*head)->next = (*head)->prev; //Update the `next` pointer of the `new head` to point to the `old head`, effectively reversing their positions
 	(*head)->prev = NULL; //Sets the `prev` pointer of the `new head` to `NULL` completing the swap
+	write(1,"sa\n",3);
 }

@@ -19,4 +19,5 @@ void reverse_rotate(node **head)
     last->next = *head;
     *head = last;
     last->next->prev = last;
+    write(1, "rra\n", 4);
 }

@@ -69,9 +69,9 @@ void display_elements(node *head)
 
 void display_index(node *head)
 {
-    while(head!=NULL)
+    while(head)
 	{
-		printf("%lu\n",head->index);
+		printf("index is %lu, data is %lli\n",head->index,head->data);
 		head = head->next;
 	}
 }
@@ -81,7 +81,7 @@ void	assign_index(node *stack_a, int stack_size)
 	node	*highest;
 	int		value;
 
-	while (--stack_size > 0)
+	while (stack_size > 0)
 	{
 		ptr = stack_a;
 		value = INT_MIN;
@@ -101,6 +101,7 @@ void	assign_index(node *stack_a, int stack_size)
 		}
 		if (highest != NULL)
             highest->index = stack_size;
+        stack_size--;
 	}
 }
 
