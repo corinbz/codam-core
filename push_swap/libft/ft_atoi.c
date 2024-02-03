@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 20:58:55 by corin             #+#    #+#             */
-/*   Updated: 2024/02/03 15:23:43 by ccraciun         ###   ########.fr       */
+/*   Updated: 2024/02/03 18:01:26 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ long	ft_atol(const char *str)
 	index = 0;
 	while (ft_isspace(str[index]))
 		index++;
-	if (str[index] == '-')
+	if (str[index] == '-' && ft_isdigit(str[index + 1]))
 	{
 		sign = -1;
 		index++;
 	}
-	else if (str[index] == '+')
+	else if (str[index] == '+' && ft_isdigit(str[index + 1]))
 		index++;
 	while (str[index])
 	{

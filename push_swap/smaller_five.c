@@ -60,7 +60,6 @@ void sort_five(node **a,node **b)
 	{
 		rotate(a);
 		rotate(a);
-		rotate(a);
 		push(a,b,'b');
 		sort_four(a,b);
 		push(b,a,'a');

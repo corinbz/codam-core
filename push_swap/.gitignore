@@ -1,2 +1,7 @@
 a.out
 /push_swap_tester
+/push_swap_visualizer
+leaks_test.sh
+tester.py
+readme.md
+.vscode

@@ -57,4 +57,8 @@ void sort_five(node **a,node **b);
 
 int check_max_bits(node **stack);
 void radix_sort(node **a,node **b);
+
+// free stack
+void	free_stack(node **stack);
+void	free_argv(char **argv);
 #endif

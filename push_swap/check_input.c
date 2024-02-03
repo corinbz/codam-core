@@ -4,15 +4,15 @@ int are_duplicates(char **av)
 {
     int i;
     int j;
-    i = 1;
+    i = 0;
+    if(ft_atol(av[i]) == __INT64_MAX__)
+        i++;
     j = i + 1;
     while(av[i])
     {
         while(av[j])
         {
-            // printf("i is %i\nj is %i\n",i,j);
-            // printf("comparing %i with %i\n",atoi(av[i]),atoi(av[j]));
-            if (atoi(av[i]) == atoi(av[j]))
+            if (ft_atol(av[i]) == ft_atol(av[j]))
                 display_error();
             j++;
         }

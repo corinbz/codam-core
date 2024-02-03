@@ -10,7 +10,7 @@ void push(node **src, node **dest, char a)
     *dest = *src;
     *src = temp;
     if(a == 'b')
-        printf("pb\n");
+        write(1,"pb\n",3);
     else
-        printf("pa\n");
+        write(1,"pa\n",3);
 }
