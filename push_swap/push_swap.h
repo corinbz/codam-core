@@ -12,7 +12,7 @@
 //** DOUBLY LINKED LIST **
 typedef struct node
 {
-	long long data;
+	long data;
 	size_t index;
 	struct node* next;
 	struct node* prev;
@@ -26,9 +26,9 @@ void push(node **src, node **dest, char a);
 // ** FUNCTION PROTOTYPES **
 
 //* initializing stack
-node* append_to_end(node *head,long long i);
-node* append_to_empty(node *head, long long i);
-node* append_to_start(node *head, long long i);
+node* append_to_end(node *head,long i);
+node* append_to_empty(node *head, long i);
+node* append_to_start(node *head, long i);
 
 //** stack utils
 size_t count_elements(node *head);

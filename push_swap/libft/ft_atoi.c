@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 20:58:55 by corin             #+#    #+#             */
-/*   Updated: 2023/10/28 13:54:59 by ccraciun         ###   ########.fr       */
+/*   Updated: 2024/02/03 15:23:43 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ static int	ft_isspace(int c)
 	return (0);
 }
 
-int	ft_atoi(const char *str)
+long	ft_atol(const char *str)
 {
-	int	result;
-	int	sign;
-	int	index;
+	long	result;
+	int		sign;
+	int		index;
 
 	result = 0;
 	sign = 1;
@@ -40,9 +40,12 @@ int	ft_atoi(const char *str)
 	}
 	else if (str[index] == '+')
 		index++;
-	while (str[index] >= '0' && str[index] <= '9')
+	while (str[index])
 	{
-		result = result * 10 + str[index] - '0';
+		if(str[index] >= '0' && str[index] <= '9')
+			result = result * 10 + str[index] - '0';
+		else
+			return __INT64_MAX__;
 		index++;
 	}
 	return (result * sign);

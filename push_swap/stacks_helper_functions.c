@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-node* append_to_empty(node *head, long long i)
+node* append_to_empty(node *head, long i)
 {
     node *temp = malloc(sizeof(node));
     temp->prev = NULL;
@@ -10,7 +10,7 @@ node* append_to_empty(node *head, long long i)
     return head;
 }
 
-node* append_to_end(node *head,long long i)
+node* append_to_end(node *head,long i)
 {
     if(head == NULL)
     {
@@ -29,7 +29,7 @@ node* append_to_end(node *head,long long i)
     return head;
 }
 
-node* append_to_start(node *head, long long i)
+node* append_to_start(node *head, long i)
 {
     if(head == NULL)
     {
@@ -78,8 +78,8 @@ void display_index(node *head)
 void	assign_index(node *stack_a, int stack_size)
 {
 	node	*ptr;
-	node	*highest;
-	int		value;
+	node    *highest;
+	long    value;
 
 	while (stack_size > 0)
 	{
