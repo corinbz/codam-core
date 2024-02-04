@@ -5,18 +5,16 @@ NAME = push_swap
 LIBFT = ./libft/libft.a
 
 # Flags
-CFLAGS = -Wall -g
+CFLAGS = -Wall -Wextra -Werror -g
 
 # Src files
-SRC = push_elements.c \
-      stacks_helper_functions.c \
-	  swap_stacks.c \
+SRC = stack_operations.c \
+      stack_utils.c \
 	  check_input.c \
 	  errors.c \
-	  rotate_stacks.c \
-	  reverse_rotate_stacks.c \
 	  smaller_five.c \
 	  radix_functions.c \
+	  stack_intialization.c \
 	  main.c
 
 OBJ_DIR = ./obj/

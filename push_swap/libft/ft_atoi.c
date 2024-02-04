@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 20:58:55 by corin             #+#    #+#             */
-/*   Updated: 2024/02/03 18:01:26 by ccraciun         ###   ########.fr       */
+/*   Updated: 2024/02/04 15:01:05 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ long	ft_atol(const char *str)
 		index++;
 	while (str[index])
 	{
-		if(str[index] >= '0' && str[index] <= '9')
+		if (str[index] >= '0' && str[index] <= '9')
 			result = result * 10 + str[index] - '0';
 		else
-			return __INT64_MAX__;
+			return (__INT64_MAX__);
 		index++;
 	}
 	return (result * sign);
