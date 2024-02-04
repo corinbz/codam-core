@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 14:49:04 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/04 14:51:57 by ccraciun         ###   ########.fr       */
+/*   Updated: 2024/02/04 15:36:50 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ int	check_max_bits(t_node **head)
 	}
 	return (max_bits);
 }
+/* loop through the nodes and sort each number by the bit
+ starting from the least significant bit. if the bit is 0, push to b
+ else rotate a. then push all the numbers from b to a and repeat the process
+ */
 
 void	radix_sort(t_node **a, t_node **b)
 {

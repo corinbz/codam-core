@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 14:56:27 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/04 14:58:56 by ccraciun         ###   ########.fr       */
+/*   Updated: 2024/02/04 15:58:03 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,37 @@
 
 void	swap(t_node **head)
 {
+	t_node	*second_node;
+	t_node	*first_node;
+
 	if (!*head || !(*head)->next)
 		return ;
-	*head = (*head)->next;
-	(*head)->prev->prev = *head;
-	(*head)->prev->next = (*head)->next;
-	if ((*head)->next)
-		(*head)->next->prev = (*head)->prev;
-	(*head)->next = (*head)->prev;
-	(*head)->prev = NULL;
+	second_node = (*head)->next;
+	*head = second_node;
+	first_node = second_node->prev;
+	second_node->prev = first_node->prev;
+	first_node->next = second_node->next;
+	if (second_node->next)
+		second_node->next->prev = first_node;
+	second_node->next = first_node;
+	first_node->prev = NULL;
 	write(1, "sa\n", 3);
 }
 
 void	rotate(t_node **head)
 {
+	t_node	*first;
 	t_node	*last;
 
 	if (*head == NULL || (*head)->next == NULL)
 		return ;
 	last = get_last(*head);
-	last->next = *head;
-	*head = (*head)->next;
+	first = *head;
+	last->next = first;
+	first->prev = last;
+	*head = first->next;
 	(*head)->prev = NULL;
-	last->next->prev = last;
-	last->next->next = NULL;
+	first->next = NULL;
 	write(1, "ra\n", 3);
 }
 

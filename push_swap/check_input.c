@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 14:14:25 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/04 14:47:51 by ccraciun         ###   ########.fr       */
+/*   Updated: 2024/02/04 16:26:29 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	parse_av(int ac, char **av, t_node **a)
 	int	i;
 
 	i = 1;
-	if (ac == 2 && !av[1][0])
+	if (ac >= 2 && !av[1][0])
 		display_error();
 	else if (ac == 2)
 	{

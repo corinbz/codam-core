@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 14:53:27 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/04 14:56:10 by ccraciun         ###   ########.fr       */
+/*   Updated: 2024/02/04 16:01:50 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@ t_node	*append_to_end(t_node *head, long i)
 	temp->prev = NULL;
 	temp->data = i;
 	temp->next = NULL;
-	while (tp->next != NULL)
-		tp = tp->next;
+	tp = get_last(head);
 	tp->next = temp;
 	temp->prev = tp;
 	return (head);

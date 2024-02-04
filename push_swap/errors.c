@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 14:30:34 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/04 14:43:46 by ccraciun         ###   ########.fr       */
+/*   Updated: 2024/02/04 15:41:18 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	free_stack(t_node **stack)
 	t_node	*tmp;
 	t_node	*current;
 
-	if (NULL == stack)
+	if (stack == NULL)
 		return ;
 	current = *stack;
 	while (current)
@@ -37,13 +37,15 @@ void	free_stack(t_node **stack)
 	}
 	*stack = NULL;
 }
+/*ft_strnstr(argv[i], "./push_swap", 12) checks if the first element
+of the argv is the name of the program*/
 
 void	free_argv(char **argv)
 {
 	int	i;
 
 	i = 0;
-	if (NULL == argv || NULL == *argv || ft_strnstr(argv[i], "./push_swap", 12))
+	if (NULL == argv || NULL == *argv || ft_strnstr(argv[0], "./push_swap", 12))
 		return ;
 	while (argv[i])
 	{
