@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 14:14:25 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/05 18:42:54 by ccraciun         ###   ########.fr       */
+/*   Updated: 2024/02/05 18:46:21 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ int	are_duplicates(char **av)
 		while (av[j])
 		{
 			if (ft_atol(av[i]) == ft_atol(av[j]))
+			{
+				free_argv(av);
 				display_error();
+			}
 			j++;
 		}
 		i++;
