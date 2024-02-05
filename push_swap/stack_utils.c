@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 14:59:09 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/04 15:00:04 by ccraciun         ###   ########.fr       */
+/*   Updated: 2024/02/05 16:33:29 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,18 @@ size_t	count_elements(t_node *head)
 		head = head->next;
 	}
 	return (result);
+}
+
+void	set_default_index(t_node *stack_a)
+{
+	t_node	*ptr;
+
+	ptr = stack_a;
+	while (ptr)
+	{
+		ptr->index = 0;
+		ptr = ptr->next;
+	}
 }
 
 void	assign_index(t_node *stack_a, int stack_size)

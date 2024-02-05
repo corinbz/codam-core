@@ -15,6 +15,7 @@ SRC = stack_operations.c \
 	  smaller_five.c \
 	  radix_functions.c \
 	  stack_intialization.c \
+	  for_debugging.c \
 	  main.c
 
 OBJ_DIR = ./obj/

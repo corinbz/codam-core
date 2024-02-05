@@ -6,15 +6,14 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 14:52:07 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/04 14:53:07 by ccraciun         ###   ########.fr       */
+/*   Updated: 2024/02/05 14:50:21 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_node	*find_min(t_node *stack)
+t_node	*find_min(t_node *stack, long min)
 {
-	long	min;
 	t_node	*min_t_node;
 
 	if (!stack)
@@ -56,7 +55,7 @@ void	sort_five(t_node **a, t_node **b)
 {
 	t_node	*min_t_node;
 
-	min_t_node = find_min(*a);
+	min_t_node = find_min(*a, INT_MIN);
 	if ((*a)->next == min_t_node)
 		swap(a);
 	else if ((*a)->next->next == min_t_node)
@@ -80,7 +79,7 @@ void	sort_four(t_node **a, t_node **b)
 {
 	t_node	*min_t_node;
 
-	min_t_node = find_min(*a);
+	min_t_node = find_min(*a, INT_MIN);
 	if ((*a)->next == min_t_node)
 		swap(a);
 	else if ((*a)->next->next == min_t_node)

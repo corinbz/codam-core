@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 14:39:34 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/04 15:00:35 by ccraciun         ###   ########.fr       */
+/*   Updated: 2024/02/05 16:32:11 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 typedef struct node
 {
 	long			data;
-	size_t			index;
+	int             index;
 	struct node		*next;
 	struct node		*prev;
 }	t_node;
@@ -41,6 +41,7 @@ void	push(t_node **src, t_node **dest, char a);
 t_node	*append_to_end(t_node *head, long i);
 t_node	*append_to_empty(t_node *head, long i);
 t_node	*append_to_start(t_node *head, long i);
+void	set_default_index(t_node *stack_a);
 
 //** stack utils
 size_t	count_elements(t_node *head);
@@ -60,7 +61,7 @@ void	parse_av(int ac, char **av, t_node **a);
 bool	stack_sorted(t_node *stack);
 void	rotate(t_node **head);
 void	reverse_rotate(t_node **head);
-t_node	*find_min(t_node *stack);
+t_node	*find_min(t_node *stack, long min);
 t_node	*find_max(t_node *stack);
 void	sort_three(t_node **a);
 void	sort_four(t_node **a, t_node **b);
