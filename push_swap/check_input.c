@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 14:14:25 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/05 17:50:18 by ccraciun         ###   ########.fr       */
+/*   Updated: 2024/02/05 18:42:54 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	parse_av(int ac, char **av, t_node **a)
 	{
 		if (ft_atol(av[i]) > INT_MAX || ft_atol(av[i]) < INT_MIN)
 		{
+			free_argv(av);
 			free_stack(a);
 			display_error();
 		}
