@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 14:39:34 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/05 16:32:11 by ccraciun         ###   ########.fr       */
+/*   Updated: 2024/02/05 18:36:21 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 typedef struct node
 {
 	long			data;
-	int             index;
+	int				index;
 	struct node		*next;
 	struct node		*prev;
 }	t_node;

@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 14:30:34 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/05 16:43:38 by ccraciun         ###   ########.fr       */
+/*   Updated: 2024/02/05 18:05:34 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	free_argv(char **argv)
 	int	i;
 
 	i = 0;
-	if (NULL == argv || NULL == *argv || ft_strlen(argv[0]) > 11)
+	if (NULL == argv || NULL == *argv || ft_strnstr(argv[i], "push_swap", 11))
 		return ;
 	while (argv[i])
 	{
