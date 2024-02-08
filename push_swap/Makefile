@@ -1,13 +1,24 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: corin <corin@student.42.fr>                +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/02/08 21:59:35 by corin             #+#    #+#              #
+#    Updated: 2024/02/08 23:01:54 by corin            ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 
 NAME = push_swap
 
-# Dirs
 LIBFT = ./libft/libft.a
+LIBFTDIR = ./libft/
+OBJDIR = ./obj/
 
-# Flags
 CFLAGS = -Wall -Wextra -Werror -g
 
-# Src files
 SRC = stack_operations.c \
       stack_utils.c \
 	  check_input.c \
@@ -18,28 +29,37 @@ SRC = stack_operations.c \
 	  for_debugging.c \
 	  main.c
 
-OBJ_DIR = ./obj/
-OBJS = $(addprefix $(OBJ_DIR), $(notdir $(SRC:.c=.o)))
+#Colors
 
-$(LIBFT):
-	make -C ./libft
+GREEN=\033[1;32m
+BLUE=\033[1;36m
+YELLOW=\033[1;33m
+RED=\033[1;31m
+NC=\033[0m # No Color
+
+OBJS = $(addprefix $(OBJDIR), $(notdir $(SRC:.c=.o)))
+
+$(OBJDIR)%.o: %.c
+	@mkdir -p $(dir $@)
+	@$(CC) $(CFLAGS) -I$(LIBFTDIR) -c $< -o $@
+	@echo "$(GREEN)Compiled $< successfully!$(NC)"
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
-
-$(OBJ_DIR)%.o: %.c
-	mkdir -p $(OBJ_DIR)
-	$(CC) $(CFLAGS) -c $< -o $@
+$(NAME): $(OBJS)
+	@make -s -C $(LIBFTDIR)
+	@$(CC) $(CFLAGS) $(OBJS) -L$(LIBFTDIR) -lft -I$(LIBFTDIR) -o $@
+	@echo "$(BLUE)$(NAME) created successfully!$(NC)"
 
 clean:
-	-rm -fr $(OBJ_DIR)
-	make clean -C ./libft
+	@rm -rf $(OBJDIR)
+	@make -s -C $(LIBFTDIR) clean
+	@echo "$(YELLOW)$(NAME) -> Object files removed!$(NC)"
 
 fclean: clean
-	-rm -fr $(NAME)
-	-rm -fr $(LIBFT)
+	@rm -f $(NAME)
+	@make -s -C $(LIBFTDIR) fclean
+	@echo "$(RED)$(NAME) executable removed!$(NC)"
 
 re: fclean all
 
