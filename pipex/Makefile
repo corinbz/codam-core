@@ -1,28 +1,47 @@
 NAME = pipex
 
-# Flags
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -g
 
-# Src files
-SRC = 
+LIBFT = ./libft/libft.a
+LIBFTDIR = ./libft/
+OBJDIR = ./obj/
 
-OBJ_DIR = ./obj/
-OBJS = $(addprefix $(OBJ_DIR), $(notdir $(SRC:.c=.o)))
+SRC = main.c\
+	parse_input.c\
+
+
+#Colors
+
+GREEN=\033[1;32m
+BLUE=\033[1;36m
+YELLOW=\033[1;33m
+RED=\033[1;31m
+NC=\033[0m # No Color
+
+OBJS = $(addprefix $(OBJDIR), $(notdir $(SRC:.c=.o)))
+
+
+$(OBJDIR)%.o: %.c
+	@mkdir -p $(dir $@)
+	@$(CC) $(CFLAGS) -I$(LIBFTDIR) -c $< -o $@
+	@echo "$(GREEN)Compiled $< successfully!$(NC)"
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
-
-$(OBJ_DIR)%.o: %.c
-	mkdir -p $(OBJ_DIR)
-	$(CC) $(CFLAGS) -c $< -o $@
+	@make -s -C $(LIBFTDIR)
+	@$(CC) $(CFLAGS) $(OBJS) -L$(LIBFTDIR) -lft -I$(LIBFTDIR) -o $@
+	@echo "$(BLUE)$(NAME) created successfully!$(NC)"
 
 clean:
-	-rm -fr $(OBJ_DIR)
+	@rm -rf $(OBJDIR)
+	@make -s -C $(LIBFTDIR) clean
+	@echo "$(YELLOW)$(NAME) -> Object files removed!$(NC)"
 
 fclean: clean
-	-rm -fr $(NAME)
+	@rm -f $(NAME)
+	@make -s -C $(LIBFTDIR) fclean
+	@echo "$(RED)$(NAME) executable removed!$(NC)"
 
 re: fclean all
 
