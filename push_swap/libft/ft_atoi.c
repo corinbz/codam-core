@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 20:58:55 by corin             #+#    #+#             */
-/*   Updated: 2024/02/04 16:16:40 by ccraciun         ###   ########.fr       */
+/*   Updated: 2024/02/10 14:14:37 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,11 @@ long	ft_atol(const char *str)
 {
 	long	result;
 	int		sign;
+	int		digits;
 
 	result = 0;
 	sign = 1;
+	digits = 1;
 	while (ft_isspace(*str))
 		str++;
 	if (*str == '-' && ft_isdigit(*(str + 1)))
@@ -39,7 +41,7 @@ long	ft_atol(const char *str)
 		str++;
 	while (*str)
 	{
-		if (*str >= '0' && *str <= '9')
+		if (ft_isdigit(*str) && digits++ < 11)
 			result = result * 10 + (*str - '0');
 		else
 			return (__INT64_MAX__);

@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 14:49:04 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/04 15:36:50 by ccraciun         ###   ########.fr       */
+/*   Updated: 2024/02/10 15:04:31 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,31 +33,39 @@ int	check_max_bits(t_node **head)
  else rotate a. then push all the numbers from b to a and repeat the process
  */
 
+void	push_all(t_node **src, t_node **dst)
+{
+	int	src_len;
+
+	src_len = count_elements(*src);
+	while (src_len--)
+		push(src, dst, 'a');
+}
+
 void	radix_sort(t_node **a, t_node **b)
 {
 	int	max_bits;
-	int	i;
-	int	j;
+	int	current_bit;
+	int	current_element;
 	int	a_len;
 
-	i = 0;
-	j = 0;
+	current_bit = 0;
+	current_element = 0;
 	a_len = count_elements(*a);
 	max_bits = check_max_bits(a);
-	while (i < max_bits)
+	while (current_bit < max_bits)
 	{
-		while (j < a_len)
+		while (current_element < a_len)
 		{
-			if (!(((*a)->index) >> i & 1))
+			if (!(((*a)->index) >> current_bit & 1))
 				push(a, b, 'b');
 			else
 				rotate(a);
-			j++;
+			current_element++;
 		}
-		j = 0;
-		while (count_elements(*b) > 0)
-			push(b, a, 'a');
-		i++;
+		current_element = 0;
+		push_all(b, a);
+		current_bit++;
 	}
 }
 

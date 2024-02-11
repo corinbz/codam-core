@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: corin <corin@student.42.fr>                +#+  +:+       +#+         #
+#    By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/08 21:59:35 by corin             #+#    #+#              #
-#    Updated: 2024/02/08 23:01:54 by corin            ###   ########.fr        #
+#    Updated: 2024/02/10 12:47:29 by ccraciun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ LIBFT = ./libft/libft.a
 LIBFTDIR = ./libft/
 OBJDIR = ./obj/
 
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
 
 SRC = stack_operations.c \
       stack_utils.c \

@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 14:39:34 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/05 18:36:21 by ccraciun         ###   ########.fr       */
+/*   Updated: 2024/02/10 15:02:09 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,11 @@ void	display_index(t_node *head);
 void	swap(t_node **head);
 void	display_elements(t_node *head);
 t_node	*get_last(t_node *head);
+void	push_all(t_node **src, t_node **dst);
 
 // check valid input
 
-int		are_duplicates(char **av);
+int		are_duplicates(t_node **a, char **av);
 void	parse_av(int ac, char **av, t_node **a);
 
 //algorithm stuff

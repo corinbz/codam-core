@@ -8,6 +8,7 @@ OBJDIR = ./obj/
 
 SRC = main.c\
 	parse_input.c\
+	pipex.c\
 
 
 #Colors

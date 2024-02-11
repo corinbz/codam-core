@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: corin <corin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 14:12:33 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/08 22:55:46 by corin            ###   ########.fr       */
+/*   Updated: 2024/02/10 14:15:58 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	main(int ac, char **av)
 	if (ac == 1)
 		return (0);
 	parse_av(ac, av, &a);
-	set_default_index(a);
 	assign_index (a, count_elements(a));
 	if (!stack_sorted(a))
 		apply_algorithm(&a, &b, count_elements(a));

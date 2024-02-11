@@ -6,13 +6,13 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 14:14:25 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/05 18:46:21 by ccraciun         ###   ########.fr       */
+/*   Updated: 2024/02/10 15:04:06 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	are_duplicates(char **av)
+int	are_duplicates(t_node **a, char **av)
 {
 	int	i;
 	int	j;
@@ -28,6 +28,7 @@ int	are_duplicates(char **av)
 			if (ft_atol(av[i]) == ft_atol(av[j]))
 			{
 				free_argv(av);
+				free_stack(a);
 				display_error();
 			}
 			j++;
@@ -43,16 +44,16 @@ void	parse_av(int ac, char **av, t_node **a)
 	int	i;
 
 	i = 1;
-	if (ac >= 2 && !av[1][0])
-		display_error();
-	else if (ac == 2)
+	if (ac == 2 && av[i][0])
 	{
 		av = ft_split(av[1], ' ');
+		if (av == NULL)
+			display_error();
 		i = 0;
 	}
-	while (av[i] && !are_duplicates(av))
+	while (av[i])
 	{
-		if (ft_atol(av[i]) > INT_MAX || ft_atol(av[i]) < INT_MIN)
+		if (!av[i][0] || ft_atol(av[i]) > INT_MAX || ft_atol(av[i]) < INT_MIN)
 		{
 			free_argv(av);
 			free_stack(a);
@@ -61,5 +62,6 @@ void	parse_av(int ac, char **av, t_node **a)
 		*a = append_to_end(*a, ft_atol(av[i]));
 		i++;
 	}
+	are_duplicates (a, av);
 	free_argv(av);
 }
