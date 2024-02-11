@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 18:46:25 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/11 16:17:01 by ccraciun         ###   ########.fr       */
+/*   Updated: 2024/02/11 18:02:46 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,9 @@ char *get_file_path (char *file_name, char **envp)
 	while(envp[i])
 	{
 		temp_envp = ft_split(envp[i], '=');
-		// printf("%i\n",ft_strncmp(temp_envp[0], "PWD", 4));
 		if (ft_strncmp(temp_envp[0], "PWD", 4) == 0)
 		{
-			printf("succes");
-			result = ft_strjoin(envp[1],file_name);
+			result = ft_strjoin(temp_envp[1],file_name);
 			return (result);
 		}
 		i++;
@@ -73,7 +71,12 @@ char *get_file_path (char *file_name, char **envp)
 
 int in_file_access(char *file_path, char **envp)
 {
-	printf("%s\n",file_path);
+	if(access(file_path,R_OK) == 0)
+	{
+		printf("file is readable\n");
+		return (1);
+	}
+	printf("file does not exist or is not readable.\n");
 	return (0);
 }
 char **get_cmd_path(char **path_list)
