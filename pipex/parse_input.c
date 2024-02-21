@@ -6,50 +6,31 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 18:46:25 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/21 15:26:20 by ccraciun         ###   ########.fr       */
+/*   Updated: 2024/02/21 18:40:02 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "pipex.h"
 
-char **get_possible_paths(char **env_path, char *cmd)
+void	parse_data(t_data *data, int ac, char **av, char **envp)
 {
-	//returns an array containing all possible locations of the cmd
-	char **path;
-	int	i;
-	int j;
-	int k;
 	
+}
+
+void get_possible_paths(t_data *data,char **envp, char *cmd)
+{
+	char	*tmp;
+	size_t	i;
 	i = 0;
-	j = 0;
-	k = 0;
-	
-	cmd = ft_strjoin("/",cmd);//mem check
-	if(!cmd)
-		return (NULL);
-	while(env_path[i])
+	//returns an array containing all possible locations of the cmd
+	while(envp[i])
 	{
-		path = ft_split(env_path[i], '=');//mem check
-		if (!path)
-			return (NULL);
-		if(!ft_strncmp(path[j],"PATH",5))
-			{
-				path = ft_split(path[1],':');
-				if (!path)
-					return (NULL);
-				while(path[k])
-				{
-					path[k] = ft_strjoin(path[k],cmd);//mem check
-					if (!path[k])
-						return (NULL);
-					k++;
-				}
-				return (path);
-			}
-		j = 0;
+		if (ft_strncmp("PATH", envp[i], 4) == 0)
+		{
+			data->path = ft_split(ft_substr(envp[i], 5, ft_strlen(envp[i]) - 5), ':');//check memmory
+		}
 		i++;
 	}
-	return (NULL);
 }
 
 int	executable_exists(char *path) 
@@ -91,7 +72,6 @@ int in_file_access(char *file_path, char **envp)
 {
 	if(access(file_path,R_OK) == 0)
 	{
-		printf("file is readable\n");
 		return (1);
 	}
 	printf("file does not exist or is not readable.\n");

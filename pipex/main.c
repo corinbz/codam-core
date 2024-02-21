@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 12:28:48 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/21 16:05:25 by ccraciun         ###   ########.fr       */
+/*   Updated: 2024/02/21 18:37:14 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,16 +56,20 @@ int main(int ac, char **av, char **envp)
 {
 	int file1;
 	int file2;
-	if (ac < 5)
-		return(perror("You must have 4 arguments"),1);
-	file1 = open(av[1], O_RDONLY);
-	file2 = open(av[4], O_CREAT | O_TRUNC | O_RDWR, 0644);
-	if (file1 == -1 || file2 == -1)
-		return(perror("error opening / creating files"),2);
-	pipex(file1, file2, av[2], av[3], envp);
-	// char *filepath = get_cmd_path(get_possible_paths(envp, av[2]));
-	// printf("path is %s\n", filepath);
-	close(file1);
-	close(file2);
-	return (0);
+	t_data data;
+	
+	if (!ac_check(ac,av))
+		return (perror("Invalid number of arguments"), EXIT_FAILURE);
+	ft_bzero(&data, sizeof(t_data));
+	get_possible_paths(&data, envp, av[2]);
+	// file1 = open(av[1], O_RDONLY);
+	// file2 = open(av[4], O_CREAT | O_TRUNC | O_RDWR, 0644);
+	// if (file1 == -1 || file2 == -1)
+	// 	return(perror("error opening / creating files"),2);
+	// pipex(file1, file2, av[2], av[3], envp);
+	// // char *filepath = get_cmd_path(get_possible_paths(envp, av[2]));
+	// // printf("path is %s\n", filepath);
+	// close(file1);
+	// close(file2);
+	// return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 13:48:19 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/21 15:34:55 by ccraciun         ###   ########.fr       */
+/*   Updated: 2024/02/21 16:41:54 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void    pipex(int f1, int f2, char *cmd1, char *cmd2, char **envp)
     close(end[1]);
     waitpid(child1, &status, 0);  // supervising the children
     waitpid(child2, &status, 0);  // while they finish their tasks
+	// ft_free_all(cmd1_with_flags,cmd2_with_flags,0);
+	// ft_free_all(&cmd1,&cmd2,0);
 }
 
 void child_one(int fd1, char *cmd1, char **cmd1_inc_flags, int *end, char **envp)
@@ -52,7 +54,10 @@ void child_one(int fd1, char *cmd1, char **cmd1_inc_flags, int *end, char **envp
 	// if (!cmd_including_flags)
 	// 	perror("alloc fail");
 	if (execve(cmd1, cmd1_inc_flags, envp) == -1)
+	{
 		perror("execve failed");
+		exit(2);
+	}
 }
 void child_two(int fd2, char *cmd2, char **cmd2_inc_flags, int *end, char **envp)
 {
@@ -62,5 +67,8 @@ void child_two(int fd2, char *cmd2, char **cmd2_inc_flags, int *end, char **envp
 	// if (!cmd_including_flags)
 		// perror("alloc fail");
 	if (execve(cmd2, cmd2_inc_flags, envp) == -1)
-		perror("execve failed");
+		{
+			perror("execve failed");
+			exit(2);
+		}
 }
