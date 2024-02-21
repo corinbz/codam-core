@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 18:46:25 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/21 12:19:29 by ccraciun         ###   ########.fr       */
+/*   Updated: 2024/02/21 15:26:20 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 char **get_possible_paths(char **env_path, char *cmd)
 {
+	//returns an array containing all possible locations of the cmd
 	char **path;
 	int	i;
 	int j;
@@ -53,14 +54,16 @@ char **get_possible_paths(char **env_path, char *cmd)
 
 int	executable_exists(char *path) 
 {
-    if (access(path, X_OK) != 0)
-        return(0);
-	perror("Path does not exist or is not executable:");
-	return (1);
+    if (access(path, X_OK) != -1)
+        return(1);
+	// printf("%s\n", path);
+	// perror("Path does not exist or is not executable");
+	return (0);
 }
 
 char *get_file_path (char *file_name, char **envp)
 {
+	//returns the absolute file path of the filename
 	int i = 0;
 	char *result;
 	char **temp_envp;
@@ -94,15 +97,18 @@ int in_file_access(char *file_path, char **envp)
 	printf("file does not exist or is not readable.\n");
 	return (0);
 }
-char **get_cmd_path(char **path_list)
+char *get_cmd_path(char **path_list)
 {
+	//loop through all possible paths and check if file is executable
 	int i = 0;
 	while(path_list[i])
 	{
+		// printf("%s\n",path_list[i]);
 		if(executable_exists(path_list[i]))
-			return (&path_list[i]);
+			return (path_list[i]);
 		i++;
 	}
+	// perror("command not found or not executable: ");
 	return (NULL);
 }
 
