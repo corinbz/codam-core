@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 18:46:25 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/11 18:02:46 by ccraciun         ###   ########.fr       */
+/*   Updated: 2024/02/21 12:19:29 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,23 @@ char **get_possible_paths(char **env_path, char *cmd)
 	k = 0;
 	
 	cmd = ft_strjoin("/",cmd);//mem check
+	if(!cmd)
+		return (NULL);
 	while(env_path[i])
 	{
 		path = ft_split(env_path[i], '=');//mem check
+		if (!path)
+			return (NULL);
 		if(!ft_strncmp(path[j],"PATH",5))
 			{
 				path = ft_split(path[1],':');
+				if (!path)
+					return (NULL);
 				while(path[k])
 				{
 					path[k] = ft_strjoin(path[k],cmd);//mem check
+					if (!path[k])
+						return (NULL);
 					k++;
 				}
 				return (path);
@@ -47,6 +55,7 @@ int	executable_exists(char *path)
 {
     if (access(path, X_OK) != 0)
         return(0);
+	perror("Path does not exist or is not executable:");
 	return (1);
 }
 
@@ -56,12 +65,18 @@ char *get_file_path (char *file_name, char **envp)
 	char *result;
 	char **temp_envp;
 	file_name = ft_strjoin("/", file_name);//mem check
+	if (!file_name)
+		return (NULL);
 	while(envp[i])
 	{
 		temp_envp = ft_split(envp[i], '=');
+		if (!temp_envp)
+			return (NULL);
 		if (ft_strncmp(temp_envp[0], "PWD", 4) == 0)
 		{
 			result = ft_strjoin(temp_envp[1],file_name);
+			if (!result)
+				return (NULL);
 			return (result);
 		}
 		i++;
@@ -97,6 +112,6 @@ char **get_cmd_incl_flags(char *raw_cmd)
 char **cmd_inc_flags;
 cmd_inc_flags = ft_split(raw_cmd, ' ');
 if (!cmd_inc_flags)
-	exit(2);
+	return (NULL);
 return (cmd_inc_flags);
 }

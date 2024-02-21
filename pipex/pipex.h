@@ -6,13 +6,22 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 15:56:48 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/11 17:49:15 by ccraciun         ###   ########.fr       */
+/*   Updated: 2024/02/17 18:15:01 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include <stdio.h>
 #include <unistd.h>
+# include <stddef.h>
+#include <fcntl.h>
+#include <sys/wait.h>
 #include "./libft/libft.h"
+// #include "./gnl_good/get_next_line.h"
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 10
+# endif
 
 char **get_possible_paths(char **env_path, char *cmd);
 int executable_exists(char *path);

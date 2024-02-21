@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 12:28:48 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/11 15:35:05 by ccraciun         ###   ########.fr       */
+/*   Updated: 2024/02/21 12:23:20 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ Should behave like: < infile ls -l | wc -l > outfile
             |--execve(cmd2)
 
 fd[0] is set up for reading, fd[1] is set up for writing
+pipe is used to communicate between processes (forks). 
 
     infile                                             outfile
 as stdin for cmd1                                 as stdout for cmd2            
@@ -53,16 +54,18 @@ On linux, you can check your fds currently open with the command ls -la /proc/$$
 
 int main(int ac, char **av, char **envp)
 {
+	int file1;
+	int file2;
 	int end[2];
-	pipe(end);
-	__pid_t parent = fork();
-	if(parent < 0)
-		return (EXIT_FAILURE);
-	if(parent != 0)
-		//we are in the child process
-		process_child(end, av, envp);
-	else
-		return (0);
+	int status;
+	file1 = open("in.txt", O_RDONLY);
+	file2 = open("out.txt", O_CREAT | O_TRUNC | O_RDWR, 0644);
+	char *cmd[] = {"cat", NULL};
+		dup2(file1, STDIN_FILENO);
+		dup2(file2, STDOUT_FILENO);
+		if (execve("/usr/bin/cat",cmd,envp) == -1)
+			perror("execve failed to run:");
+		close(file1);
+		close(file2);
 	return (0);
 }
-void	pipex(int f1, int f2);
