@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 18:46:25 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/24 12:48:39 by ccraciun         ###   ########.fr       */
+/*   Updated: 2024/02/24 16:08:30 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	executable_exists(char *path)
 {
     if (access(path, X_OK) != -1)
         return(1);
+	// free(path);
 	return (0);
 }
 
@@ -81,24 +82,31 @@ int in_file_access(char *file_path, char **envp)
 }
 void get_cmd_path(t_data *data, char *cmd)
 {
-	size_t i;
-	char *temp;
-	cmd = ft_strjoin("/", cmd);
-	i = 0;
-	while(data->possible_paths[i])
-	{
-		temp = ft_strjoin(data->possible_paths[i], cmd);
-		if (!temp)
-			return(free(cmd));
-		if (executable_exists(temp))
-		{
-			data->cmd1_path = temp;
-			return(free(cmd));
-		}
-		free(temp);
-		i++;
-	}
+    size_t i;
+    char *temp;
+	char *new_cmd;
+
+    i = 0;
+	new_cmd = ft_strjoin("/", cmd); 
+    while (data->possible_paths[i++]) {
+        temp = ft_strjoin(data->possible_paths[i -1], new_cmd);
+        if (!temp) {
+            ft_free(new_cmd);
+            return; 
+        }
+        if (executable_exists(temp)) {
+            data->cmd1_path = temp;
+            return (ft_free(new_cmd),ft_free(temp)); 
+        }
+		ft_free(temp);
+    }
+	ft_free(new_cmd);
+	return(display_error(data, "Command not found"));
 }
+
+
+
+
 
 
 char **get_cmd_incl_flags(char *raw_cmd)

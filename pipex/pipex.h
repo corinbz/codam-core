@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 15:56:48 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/24 12:30:09 by ccraciun         ###   ########.fr       */
+/*   Updated: 2024/02/24 16:16:46 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,13 @@ int		in_file_access(char *file_path, char **envp);
 //fork stuff
 void	child_one(int fd1, char *cmd1, char **cmd1_inc_flags, int *end, char **envp);
 void	child_two(int fd2, char *cmd2, char **cmd2_inc_flags, int *end, char **envp);
-void    pipex(int f1, int f2, char *cmd1, char *cmd2, char **envp);
+void    pipex(t_data *data, char **argv);
 
 //error handeling
 bool	ac_check(int ac, char **av);
+void	display_error(t_data *data, char *error);
 
 //mem management
 void	free_2d(char **arr);
+void	ft_free(char *str);
 void	free_data(t_data *data);

@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 11:26:35 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/24 12:27:50 by ccraciun         ###   ########.fr       */
+/*   Updated: 2024/02/24 16:07:54 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,18 @@ void free_data(t_data *data)
 	// free(data->out_fd);
 	// free(data->invalid_infile);
 	// free(data);
-	return;
+}
+void display_error(t_data *data, char *error)
+{
+	free_data(data);
+	perror(error);
+	exit(EXIT_FAILURE);
+}
+void ft_free(char *str)
+{
+	if (str)
+	{
+		free(str);
+		str = NULL;
+	}
 }

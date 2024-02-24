@@ -6,32 +6,26 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 13:48:19 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/24 11:27:55 by ccraciun         ###   ########.fr       */
+/*   Updated: 2024/02/24 16:17:43 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void    pipex(int f1, int f2, char *cmd1, char *cmd2, char **envp)
+void    pipex(t_data *data, char **argv)
 {
     int   end[2];
     int   status;
     __pid_t child1;
     __pid_t child2;
-
-	char **cmd1_with_flags = get_cmd_incl_flags(cmd1);
-	char **cmd2_with_flags = get_cmd_incl_flags(cmd2);
-
-	// cmd1 = get_cmd_path(get_possible_paths(envp, cmd1_with_flags[0]));
-	// cmd2 = get_cmd_path(get_possible_paths(envp, cmd2_with_flags[0]));
-	// printf("path is %s\n", cmd2);
+	
 	pipe(end);
 	//first command
     child1 = fork();
     if (child1 < 0)
          return (perror("Fork: "));
     if (child1 == 0)
-        child_one(f1, cmd1, cmd1_with_flags, end, envp);
+        child_one(data->in_fd, argv[1], cmd1_with_flags, end, envp);
 	// second command
     child2 = fork();
     if (child2 < 0)

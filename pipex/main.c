@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 12:28:48 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/24 12:31:17 by ccraciun         ###   ########.fr       */
+/*   Updated: 2024/02/24 16:13:22 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void initialiaze_data(t_data *data, char **envp, char **av)
 	}
 	get_possible_paths(data, envp);
 	get_cmd_path(data, av[2]);
-	printf("cmd1 path is %s\n", data->cmd1_path);
+	get_cmd_path(data, av[3]);
 }
 
 int main(int ac, char **av, char **envp)
@@ -74,7 +74,7 @@ int main(int ac, char **av, char **envp)
 	if (!ac_check(ac,av))
 		return (perror("Invalid number of arguments"), EXIT_FAILURE);
 	initialiaze_data(&data, envp, av);	
-	// pipex(data.in_fd, data.out_fd, av[2], av[3], envp);
+	pipex(&data);
 	// // char *filepath = get_cmd_path(get_possible_paths(envp, av[2]));
 	// // printf("path is %s\n", filepath);
 	// close(file1);
