@@ -10,6 +10,7 @@ SRC = main.c\
 	parse_input.c\
 	pipex.c\
 	error_handeling.c\
+	mem_free.c\
 
 
 #Colors

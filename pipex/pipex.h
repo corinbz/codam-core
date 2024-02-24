@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 15:56:48 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/21 18:30:56 by ccraciun         ###   ########.fr       */
+/*   Updated: 2024/02/24 11:59:31 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@ typedef struct s_data
 	int in_fd;
 	int out_fd;
 	bool invalid_infile;
-	char **cmd_paths;//executable paths
-	char ***cmd_args;//store the flags
+	char **cmd_paths;
+	char **cmd1_args;
+	char **cmd2_args;
 	char **path;
 } t_data;
 
@@ -47,4 +48,7 @@ void    pipex(int f1, int f2, char *cmd1, char *cmd2, char **envp);
 
 //error handeling
 bool	ac_check(int ac, char **av);
-void	ft_free_all(char **str1, char **str2, char **str3);
+
+//mem management
+void	free_2d(char **arr);
+void	free_data(t_data *data);

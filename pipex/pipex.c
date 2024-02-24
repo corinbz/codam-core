@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 13:48:19 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/21 16:41:54 by ccraciun         ###   ########.fr       */
+/*   Updated: 2024/02/24 11:27:55 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void    pipex(int f1, int f2, char *cmd1, char *cmd2, char **envp)
 	char **cmd1_with_flags = get_cmd_incl_flags(cmd1);
 	char **cmd2_with_flags = get_cmd_incl_flags(cmd2);
 
-	cmd1 = get_cmd_path(get_possible_paths(envp, cmd1_with_flags[0]));
-	cmd2 = get_cmd_path(get_possible_paths(envp, cmd2_with_flags[0]));
+	// cmd1 = get_cmd_path(get_possible_paths(envp, cmd1_with_flags[0]));
+	// cmd2 = get_cmd_path(get_possible_paths(envp, cmd2_with_flags[0]));
 	// printf("path is %s\n", cmd2);
 	pipe(end);
 	//first command

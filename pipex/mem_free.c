@@ -1,20 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_handeling.c                                  :+:      :+:    :+:   */
+/*   mem_free.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 16:08:47 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/24 11:27:48 by ccraciun         ###   ########.fr       */
+/*   Created: 2024/02/24 11:26:35 by ccraciun          #+#    #+#             */
+/*   Updated: 2024/02/24 11:58:34 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-bool ac_check(int ac, char **av)
+void	free_2d(char **arr)
 {
-	if (ac != 5)
-		return(perror("you must have exactly 4 arguments"), false);
-	return (true);
+	size_t	i;
+
+	i = 0;
+	if (arr)
+	{
+		while (arr && arr[i])
+		{
+			if (arr[i] != NULL)
+				free(arr[i]);
+			arr[i++] = NULL;
+		}
+		free(arr);
+		arr = NULL;
+	}
+}
+
+void free_data(t_data *data)
+{
+	free_2d(data->path);
+	free_2d(data->cmd_paths);
+	// free(data->out_fd);
+	// free(data->invalid_infile);
+	// free(data);
+	return;
 }

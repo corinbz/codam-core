@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 12:28:48 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/21 18:37:14 by ccraciun         ###   ########.fr       */
+/*   Updated: 2024/02/24 11:53:58 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ int main(int ac, char **av, char **envp)
 		return (perror("Invalid number of arguments"), EXIT_FAILURE);
 	ft_bzero(&data, sizeof(t_data));
 	get_possible_paths(&data, envp, av[2]);
+	free_data(&data);
+	// printf("%s\n",data->path[0]);
 	// file1 = open(av[1], O_RDONLY);
 	// file2 = open(av[4], O_CREAT | O_TRUNC | O_RDWR, 0644);
 	// if (file1 == -1 || file2 == -1)

@@ -6,16 +6,12 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 18:46:25 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/21 18:40:02 by ccraciun         ###   ########.fr       */
+/*   Updated: 2024/02/24 11:59:55 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "pipex.h"
 
-void	parse_data(t_data *data, int ac, char **av, char **envp)
-{
-	
-}
 
 void get_possible_paths(t_data *data,char **envp, char *cmd)
 {
@@ -27,7 +23,11 @@ void get_possible_paths(t_data *data,char **envp, char *cmd)
 	{
 		if (ft_strncmp("PATH", envp[i], 4) == 0)
 		{
-			data->path = ft_split(ft_substr(envp[i], 5, ft_strlen(envp[i]) - 5), ':');//check memmory
+			data->path = ft_split(envp[i], ':');//check memmory
+			tmp =ft_substr(data->path[0], 5, ft_strlen(data->path[0]) - 5);
+			free(data->path[0]);
+			data->path[0] = tmp;
+			return ;
 		}
 		i++;
 	}
@@ -37,8 +37,6 @@ int	executable_exists(char *path)
 {
     if (access(path, X_OK) != -1)
         return(1);
-	// printf("%s\n", path);
-	// perror("Path does not exist or is not executable");
 	return (0);
 }
 
