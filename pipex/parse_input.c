@@ -6,27 +6,30 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 18:46:25 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/24 11:59:55 by ccraciun         ###   ########.fr       */
+/*   Updated: 2024/02/24 12:48:39 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "pipex.h"
 
 
-void get_possible_paths(t_data *data,char **envp, char *cmd)
+void get_possible_paths(t_data *data,char **envp)
 {
 	char	*tmp;
 	size_t	i;
 	i = 0;
-	//returns an array containing all possible locations of the cmd
 	while(envp[i])
 	{
 		if (ft_strncmp("PATH", envp[i], 4) == 0)
 		{
-			data->path = ft_split(envp[i], ':');//check memmory
-			tmp =ft_substr(data->path[0], 5, ft_strlen(data->path[0]) - 5);
-			free(data->path[0]);
-			data->path[0] = tmp;
+			data->possible_paths = ft_split(envp[i], ':');
+			if (!data->possible_paths)
+				return ;
+			tmp =ft_substr(data->possible_paths[0], 5, ft_strlen(data->possible_paths[0]) - 5);
+			if(!tmp)
+				return(free_2d(data->possible_paths));
+			free(data->possible_paths[0]);
+			data->possible_paths[0] = tmp;
 			return ;
 		}
 		i++;
@@ -43,7 +46,8 @@ int	executable_exists(char *path)
 char *get_file_path (char *file_name, char **envp)
 {
 	//returns the absolute file path of the filename
-	int i = 0;
+	int i;
+	i = 0;
 	char *result;
 	char **temp_envp;
 	file_name = ft_strjoin("/", file_name);//mem check
@@ -53,12 +57,12 @@ char *get_file_path (char *file_name, char **envp)
 	{
 		temp_envp = ft_split(envp[i], '=');
 		if (!temp_envp)
-			return (NULL);
+			return (free(file_name),NULL);
 		if (ft_strncmp(temp_envp[0], "PWD", 4) == 0)
 		{
 			result = ft_strjoin(temp_envp[1],file_name);
 			if (!result)
-				return (NULL);
+				return (free(temp_envp),free(file_name),NULL);
 			return (result);
 		}
 		i++;
@@ -75,19 +79,25 @@ int in_file_access(char *file_path, char **envp)
 	printf("file does not exist or is not readable.\n");
 	return (0);
 }
-char *get_cmd_path(char **path_list)
+void get_cmd_path(t_data *data, char *cmd)
 {
-	//loop through all possible paths and check if file is executable
-	int i = 0;
-	while(path_list[i])
+	size_t i;
+	char *temp;
+	cmd = ft_strjoin("/", cmd);
+	i = 0;
+	while(data->possible_paths[i])
 	{
-		// printf("%s\n",path_list[i]);
-		if(executable_exists(path_list[i]))
-			return (path_list[i]);
+		temp = ft_strjoin(data->possible_paths[i], cmd);
+		if (!temp)
+			return(free(cmd));
+		if (executable_exists(temp))
+		{
+			data->cmd1_path = temp;
+			return(free(cmd));
+		}
+		free(temp);
 		i++;
 	}
-	// perror("command not found or not executable: ");
-	return (NULL);
 }
 
 

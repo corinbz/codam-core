@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 15:56:48 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/24 11:59:31 by ccraciun         ###   ########.fr       */
+/*   Updated: 2024/02/24 12:30:09 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,18 @@ typedef struct s_data
 {
 	int in_fd;
 	int out_fd;
+	char *infile_path;
 	bool invalid_infile;
-	char **cmd_paths;
+	char *cmd1_path;
+	char *cmd2_path;
 	char **cmd1_args;
 	char **cmd2_args;
-	char **path;
+	char **possible_paths;
 } t_data;
 
 //data parsing
-void	get_possible_paths(t_data *data, char **envp, char *cmd);
-char	*get_cmd_path(char **path_list);
+void	get_possible_paths(t_data *data, char **envp);
+void get_cmd_path(t_data *data, char *cmd);
 char	**get_cmd_incl_flags(char *raw_cmd);
 
 //file handeling

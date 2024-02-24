@@ -6,7 +6,7 @@
 /*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 11:26:35 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/24 11:58:34 by ccraciun         ###   ########.fr       */
+/*   Updated: 2024/02/24 12:27:50 by ccraciun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,9 @@ void	free_2d(char **arr)
 
 void free_data(t_data *data)
 {
-	free_2d(data->path);
-	free_2d(data->cmd_paths);
+	free_2d(data->possible_paths);
+	free_2d(data->cmd1_args);
+	free_2d(data->cmd2_args);
 	// free(data->out_fd);
 	// free(data->invalid_infile);
 	// free(data);
