@@ -6,7 +6,7 @@
 /*   By: corin <corin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 12:28:48 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/25 14:43:24 by corin            ###   ########.fr       */
+/*   Updated: 2024/02/25 15:26:07 by corin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ On linux, you can check your fds currently open with the command ls -la /proc/$$
 void initialiaze_data(t_data *data, char **envp, char **av)
 {
 	ft_bzero(data, sizeof(t_data));
-	data->cmd_paths = malloc(sizeof(char *) * 2);
+	data->cmd_paths = ft_calloc(2, sizeof(char *));
+	data->cmd_args = ft_calloc(2, sizeof(char **));
 	data->in_fd = open(av[1], O_RDONLY);
 	data->out_fd = open(av[4], O_CREAT | O_TRUNC | O_RDWR, 0644);
 	if (data->in_fd == -1 || data->out_fd == -1)
@@ -64,9 +65,10 @@ void initialiaze_data(t_data *data, char **envp, char **av)
 		exit(EXIT_FAILURE);
 	}
 	get_possible_paths(data, envp);
-	get_cmd_path(data, av[2], 0);
-	get_cmd_path(data, av[3], 1);
-	get_cmd_incl_flags(data, av[2]);
+	get_cmd_incl_flags(data, av[2], 0);
+	get_cmd_incl_flags(data, av[3], 1);
+	get_cmd_path(data, 0);
+	get_cmd_path(data, 1);
 }
 
 int main(int ac, char **av, char **envp)
@@ -76,7 +78,7 @@ int main(int ac, char **av, char **envp)
 	if (!ac_check(ac,av))
 		return (perror("Invalid number of arguments"), EXIT_FAILURE);
 	initialiaze_data(&data, envp, av);	
-	// pipex(&data, av, envp);
+	pipex(&data, av, envp);
 	// // char *filepath = get_cmd_path(get_possible_paths(envp, av[2]));
 	// // printf("path is %s\n", filepath);
 	free_data(&data);

@@ -6,7 +6,7 @@
 /*   By: corin <corin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 11:26:35 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/25 14:30:16 by corin            ###   ########.fr       */
+/*   Updated: 2024/02/25 15:29:00 by corin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,24 @@ void	free_2d(char **arr)
 	{
 		while (arr[i])
 		{
+			// printf("freeing %s\n", arr[i]);
 			free(arr[i]);
+			i++;
+		}
+		free(arr);
+	}
+}
+
+void	free_3d(char ***arr)
+{
+	size_t	i;
+
+	i = 0;
+	if (arr)
+	{
+		while (arr[i])
+		{
+			free_2d(arr[i]);
 			i++;
 		}
 		free(arr);
@@ -30,13 +47,9 @@ void	free_2d(char **arr)
 
 void free_data(t_data *data)
 {
-	free_2d(data->possible_paths);
-	// free_2d(data->cmd2_args);
-	// free_2d(data->cmd1_args);
 	free_2d(data->cmd_paths);
-	// free(data->out_fd);
-	// free(data->invalid_infile);
-	// free(data);
+	free_2d(data->possible_paths);
+	free_3d(data->cmd_args);
 }
 // void ft_free(char *str)
 // {
