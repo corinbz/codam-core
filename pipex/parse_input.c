@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: corin <corin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 18:46:25 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/24 16:08:30 by ccraciun         ###   ########.fr       */
+/*   Updated: 2024/02/25 13:54:10 by corin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,27 +80,27 @@ int in_file_access(char *file_path, char **envp)
 	printf("file does not exist or is not readable.\n");
 	return (0);
 }
-void get_cmd_path(t_data *data, char *cmd)
+void get_cmd_path(t_data *data, char *cmd, size_t cmd_nr)
 {
     size_t i;
-    char *temp;
 	char *new_cmd;
 
     i = 0;
 	new_cmd = ft_strjoin("/", cmd); 
     while (data->possible_paths[i++]) {
-        temp = ft_strjoin(data->possible_paths[i -1], new_cmd);
-        if (!temp) {
+        data->cmd_paths[cmd_nr] = ft_strjoin(data->possible_paths[i -1], new_cmd);
+        if (!data->cmd_paths[cmd_nr]) {
             ft_free(new_cmd);
+			display_error(data, "Malloc failed in get_cmd_path");
             return; 
         }
-        if (executable_exists(temp)) {
-            data->cmd1_path = temp;
-            return (ft_free(new_cmd),ft_free(temp)); 
+        if (executable_exists(data->cmd_paths[cmd_nr])) {
+			free(new_cmd);
+            return; 
         }
-		ft_free(temp);
+		free(data->cmd_paths[cmd_nr]);
     }
-	ft_free(new_cmd);
+	free(new_cmd);
 	return(display_error(data, "Command not found"));
 }
 
@@ -109,11 +109,18 @@ void get_cmd_path(t_data *data, char *cmd)
 
 
 
-char **get_cmd_incl_flags(char *raw_cmd)
+void	get_cmd_incl_flags(t_data *data, char *raw_cmd, size_t cmd_nr)
 {
-char **cmd_inc_flags;
-cmd_inc_flags = ft_split(raw_cmd, ' ');
-if (!cmd_inc_flags)
-	return (NULL);
-return (cmd_inc_flags);
+	if (cmd_nr == 1)
+	{
+		data->cmd1_args = ft_split(raw_cmd, ' ');
+		if (!data->cmd1_args)
+			display_error(data, "Malloc failed in get_cmd_incl_flags");
+	}
+	else
+	{
+		data->cmd2_args = ft_split(raw_cmd, ' ');
+		if (!data->cmd2_args)
+			display_error(data, "Malloc failed in get_cmd_incl_flags");
+	}
 }

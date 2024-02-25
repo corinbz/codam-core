@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: corin <corin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 13:48:19 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/24 16:17:43 by ccraciun         ###   ########.fr       */
+/*   Updated: 2024/02/25 13:54:28 by corin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void    pipex(t_data *data, char **argv)
+void    pipex(t_data *data, char **argv, char **envp)
 {
     int   end[2];
     int   status;
@@ -25,32 +25,29 @@ void    pipex(t_data *data, char **argv)
     if (child1 < 0)
          return (perror("Fork: "));
     if (child1 == 0)
-        child_one(data->in_fd, argv[1], cmd1_with_flags, end, envp);
+        child_one(data, end, envp);
 	// second command
-    child2 = fork();
-    if (child2 < 0)
-         return (perror("Fork: "));
-    if (child2 == 0)
-        child_two(f2, cmd2, cmd2_with_flags, end, envp);
+    // child2 = fork();
+    // if (child2 < 0)
+    //      return (perror("Fork: "));
+    // if (child2 == 0)
+    //     child_two(f2, cmd2, cmd2_with_flags, end, envp);
     close(end[0]);
     close(end[1]);
     waitpid(child1, &status, 0);  // supervising the children
-    waitpid(child2, &status, 0);  // while they finish their tasks
+    // waitpid(child2, &status, 0);  // while they finish their tasks
 	// ft_free_all(cmd1_with_flags,cmd2_with_flags,0);
 	// ft_free_all(&cmd1,&cmd2,0);
 }
 
-void child_one(int fd1, char *cmd1, char **cmd1_inc_flags, int *end, char **envp)
+void child_one(t_data *data, int *end, char **envp)
 {
 	close(end[0]);
-	dup2(fd1,STDIN_FILENO);
+	dup2(data->in_fd, STDIN_FILENO);
 	dup2(end[1], STDOUT_FILENO);
-	// if (!cmd_including_flags)
-	// 	perror("alloc fail");
-	if (execve(cmd1, cmd1_inc_flags, envp) == -1)
+	if (execve(data->cmd_paths[0], data->cmd1_args, envp) == -1)
 	{
-		perror("execve failed");
-		exit(2);
+		display_error(data, "child one execve failed");
 	}
 }
 void child_two(int fd2, char *cmd2, char **cmd2_inc_flags, int *end, char **envp)

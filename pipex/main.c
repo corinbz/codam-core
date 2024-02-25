@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccraciun <ccraciun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: corin <corin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 12:28:48 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/24 16:13:22 by ccraciun         ###   ########.fr       */
+/*   Updated: 2024/02/25 14:03:05 by corin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,10 @@ void initialiaze_data(t_data *data, char **envp, char **av)
 		exit(EXIT_FAILURE);
 	}
 	get_possible_paths(data, envp);
-	get_cmd_path(data, av[2]);
-	get_cmd_path(data, av[3]);
+	get_cmd_path(data, av[2], 0);
+	get_cmd_path(data, av[3], 1);
+	// get_cmd_incl_flags(data, av[2]);
+	printf("%s\n",data->cmd_paths[1]);
 }
 
 int main(int ac, char **av, char **envp)
@@ -74,11 +76,9 @@ int main(int ac, char **av, char **envp)
 	if (!ac_check(ac,av))
 		return (perror("Invalid number of arguments"), EXIT_FAILURE);
 	initialiaze_data(&data, envp, av);	
-	pipex(&data);
+	// pipex(&data, av, envp);
 	// // char *filepath = get_cmd_path(get_possible_paths(envp, av[2]));
 	// // printf("path is %s\n", filepath);
-	// close(file1);
-	// close(file2);
 	free_data(&data);
 	return (0);
 }
