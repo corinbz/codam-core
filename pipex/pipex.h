@@ -6,7 +6,7 @@
 /*   By: corin <corin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 15:56:48 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/25 13:49:33 by corin            ###   ########.fr       */
+/*   Updated: 2024/02/25 14:36:22 by corin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ typedef struct s_data
 	int out_fd;
 	char *infile_path;
 	bool invalid_infile;
-	char *cmd_paths[2];
-	// char *cmd2_path;
+	char **cmd_paths;
 	char **cmd1_args;
 	char **cmd2_args;
 	char **possible_paths;

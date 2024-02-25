@@ -6,7 +6,7 @@
 /*   By: corin <corin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 18:46:25 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/25 13:54:10 by corin            ###   ########.fr       */
+/*   Updated: 2024/02/25 14:35:33 by corin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ void get_possible_paths(t_data *data,char **envp)
 		{
 			data->possible_paths = ft_split(envp[i], ':');
 			if (!data->possible_paths)
-				return ;
-			tmp =ft_substr(data->possible_paths[0], 5, ft_strlen(data->possible_paths[0]) - 5);
+				display_error(data, "Malloc failed in get_possible_paths");
+			tmp = ft_substr(data->possible_paths[0], 5, ft_strlen(data->possible_paths[0]) - 5);
 			if(!tmp)
-				return(free_2d(data->possible_paths));
+				display_error(data, "Malloc failed in get_possible_paths");
 			free(data->possible_paths[0]);
 			data->possible_paths[0] = tmp;
 			return ;
@@ -88,9 +88,10 @@ void get_cmd_path(t_data *data, char *cmd, size_t cmd_nr)
     i = 0;
 	new_cmd = ft_strjoin("/", cmd); 
     while (data->possible_paths[i++]) {
+		// printf("%s\n",data->possible_paths[i -1]);
         data->cmd_paths[cmd_nr] = ft_strjoin(data->possible_paths[i -1], new_cmd);
         if (!data->cmd_paths[cmd_nr]) {
-            ft_free(new_cmd);
+            free(new_cmd);
 			display_error(data, "Malloc failed in get_cmd_path");
             return; 
         }

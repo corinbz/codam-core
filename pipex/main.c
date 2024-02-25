@@ -6,7 +6,7 @@
 /*   By: corin <corin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 12:28:48 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/25 14:03:05 by corin            ###   ########.fr       */
+/*   Updated: 2024/02/25 14:43:24 by corin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ On linux, you can check your fds currently open with the command ls -la /proc/$$
 void initialiaze_data(t_data *data, char **envp, char **av)
 {
 	ft_bzero(data, sizeof(t_data));
+	data->cmd_paths = malloc(sizeof(char *) * 2);
 	data->in_fd = open(av[1], O_RDONLY);
 	data->out_fd = open(av[4], O_CREAT | O_TRUNC | O_RDWR, 0644);
 	if (data->in_fd == -1 || data->out_fd == -1)
@@ -65,8 +66,7 @@ void initialiaze_data(t_data *data, char **envp, char **av)
 	get_possible_paths(data, envp);
 	get_cmd_path(data, av[2], 0);
 	get_cmd_path(data, av[3], 1);
-	// get_cmd_incl_flags(data, av[2]);
-	printf("%s\n",data->cmd_paths[1]);
+	get_cmd_incl_flags(data, av[2]);
 }
 
 int main(int ac, char **av, char **envp)
