@@ -6,14 +6,13 @@
 /*   By: corin <corin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 15:56:48 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/25 16:45:03 by corin            ###   ########.fr       */
+/*   Updated: 2024/02/25 20:34:26 by corin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include <stdio.h>
 #include <unistd.h>
-# include <stddef.h>
+#include <stddef.h>
 #include <fcntl.h>
 #include <sys/wait.h>
 #include "./libft/libft.h"
@@ -22,15 +21,15 @@
 typedef struct s_data
 {
 	//files
-	int in_fd;
-	int out_fd;
-	char *infile_path;
-	bool invalid_infile;
+	int		in_fd;
+	int		out_fd;
+	char	*infile_path;
+	bool	invalid_infile;
 	//comaands and paths
-	char **cmd_paths;
-	char ***cmd_args;
-	char **possible_paths;
-} t_data;
+	char	**cmd_paths;
+	char	***cmd_args;
+	char	**possible_paths;
+}	t_data;
 
 //data parsing
 void	get_possible_paths(t_data *data, char **envp);
@@ -40,7 +39,7 @@ size_t	ft_2dstrlen(char **arr);
 
 //file handeling
 int		executable_exists(char *path);
-char	*get_file_path (t_data *data,char *file_name, char **envp);
+char	*get_file_path(t_data *data, char *file_name, char **envp);
 int		executable_exists(char *path);
 bool	in_file_access(char *file_path, char **envp);
 void	create_and_open_files(t_data *data, char **av);
@@ -48,11 +47,11 @@ void	create_and_open_files(t_data *data, char **av);
 //fork stuff
 void	child_one(t_data *data, int *end, char **envp);
 void	child_two(t_data *data, int *end, char **envp);
-void    pipex(t_data *data, char **argv, char **envp);
+void	pipex(t_data *data, char **argv, char **envp);
 
 //error handeling
 bool	ac_check(int ac, char **av);
-void	display_error(t_data *data, char *error);
+void	display_error(t_data *data, char *error, bool exit_program);
 
 //mem management
 void	free_2d(char **arr);

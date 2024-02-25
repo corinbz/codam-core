@@ -6,13 +6,13 @@
 /*   By: corin <corin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 12:28:48 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/25 16:24:26 by corin            ###   ########.fr       */
+/*   Updated: 2024/02/25 20:18:52 by corin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "pipex.h"
+#include "pipex.h"
 
-void initialiaze_data(t_data *data, char **envp, char **av)
+void	initialiaze_data(t_data *data, char **envp, char **av)
 {
 	ft_bzero(data, sizeof(t_data));
 	data->cmd_paths = ft_calloc(3, sizeof(char *));
@@ -25,13 +25,13 @@ void initialiaze_data(t_data *data, char **envp, char **av)
 	get_cmd_path(data, 1);
 }
 
-int main(int ac, char **av, char **envp)
+int	main(int ac, char **av, char **envp)
 {
-	t_data data;
-	
-	if (!ac_check(ac,av))
+	t_data	data;
+
+	if (!ac_check(ac, av))
 		return (perror("Invalid number of arguments"), EXIT_FAILURE);
-	initialiaze_data(&data, envp, av);	
+	initialiaze_data(&data, envp, av);
 	pipex(&data, av, envp);
 	free_data(&data);
 	return (0);
