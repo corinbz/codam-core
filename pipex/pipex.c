@@ -6,7 +6,7 @@
 /*   By: corin <corin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 13:48:19 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/25 15:33:24 by corin            ###   ########.fr       */
+/*   Updated: 2024/02/25 15:44:46 by corin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,20 @@ void    pipex(t_data *data, char **argv, char **envp)
     __pid_t child2;
 	
 	pipe(end);
-	//first command
     child1 = fork();
     if (child1 < 0)
-         return (perror("Fork: "));
+	   display_error(data, "Fork child1: ");
     if (child1 == 0)
         child_one(data, end, envp);
-	// second command
     child2 = fork();
     if (child2 < 0)
-         return (perror("Fork: "));
+	   display_error(data, "Fork child2: ");
     if (child2 == 0)
         child_two(data, end, envp);
     close(end[0]);
     close(end[1]);
+	close(data->in_fd);
+	close(data->out_fd);
     waitpid(child1, &status, 0);  // supervising the children
     waitpid(child2, &status, 0);  // while they finish their tasks
 }

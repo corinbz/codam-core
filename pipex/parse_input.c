@@ -6,7 +6,7 @@
 /*   By: corin <corin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 18:46:25 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/25 15:18:47 by corin            ###   ########.fr       */
+/*   Updated: 2024/02/25 15:54:47 by corin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,46 +40,9 @@ int	executable_exists(char *path)
 {
     if (access(path, X_OK) != -1)
         return(1);
-	// free(path);
 	return (0);
 }
 
-char *get_file_path (char *file_name, char **envp)
-{
-	//returns the absolute file path of the filename
-	int i;
-	i = 0;
-	char *result;
-	char **temp_envp;
-	file_name = ft_strjoin("/", file_name);//mem check
-	if (!file_name)
-		return (NULL);
-	while(envp[i])
-	{
-		temp_envp = ft_split(envp[i], '=');
-		if (!temp_envp)
-			return (free(file_name),NULL);
-		if (ft_strncmp(temp_envp[0], "PWD", 4) == 0)
-		{
-			result = ft_strjoin(temp_envp[1],file_name);
-			if (!result)
-				return (free(temp_envp),free(file_name),NULL);
-			return (result);
-		}
-		i++;
-	}
-	return (NULL);
-}
-
-int in_file_access(char *file_path, char **envp)
-{
-	if(access(file_path,R_OK) == 0)
-	{
-		return (1);
-	}
-	printf("file does not exist or is not readable.\n");
-	return (0);
-}
 void get_cmd_path(t_data *data, size_t cmd_nr)
 {
     size_t i;
@@ -103,11 +66,6 @@ void get_cmd_path(t_data *data, size_t cmd_nr)
 	free(new_cmd);
 	return(display_error(data, "Command not found"));
 }
-
-
-
-
-
 
 void	get_cmd_incl_flags(t_data *data, char *raw_cmd, size_t cmd_nr)
 {

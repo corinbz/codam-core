@@ -6,7 +6,7 @@
 /*   By: corin <corin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 15:56:48 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/25 15:32:58 by corin            ###   ########.fr       */
+/*   Updated: 2024/02/25 15:58:21 by corin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,10 @@ void	get_cmd_incl_flags(t_data *data, char *raw_cmd, size_t cmd_nr);
 
 //file handeling
 int		executable_exists(char *path);
-char	*get_file_path (char *file_name, char **envp);
+char	*get_file_path (t_data *data,char *file_name, char **envp);
 int		executable_exists(char *path);
-int		in_file_access(char *file_path, char **envp);
+bool	in_file_access(char *file_path, char **envp);
+void	create_and_open_files(t_data *data, char **av);
 
 //fork stuff
 void	child_one(t_data *data, int *end, char **envp);

@@ -9,8 +9,9 @@ OBJDIR = ./obj/
 SRC = main.c\
 	parse_input.c\
 	pipex.c\
-	error_handeling.c\
+	error_handling.c\
 	mem_free.c\
+	file_handling.c\
 
 
 #Colors
