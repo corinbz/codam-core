@@ -6,7 +6,7 @@
 /*   By: corin <corin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 18:46:25 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/25 15:54:47 by corin            ###   ########.fr       */
+/*   Updated: 2024/02/25 16:48:34 by corin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,25 @@ int	executable_exists(char *path)
 	return (0);
 }
 
+size_t ft_2dstrlen(char **arr)
+{
+	size_t i;
+
+	i = 0;
+	while (arr[i])
+		i++;
+	return (i);
+}
+
 void get_cmd_path(t_data *data, size_t cmd_nr)
 {
     size_t i;
 	char *new_cmd;
 
     i = 0;
+	size_t path_len = ft_2dstrlen(data->possible_paths);
 	new_cmd = ft_strjoin("/", data->cmd_args[cmd_nr][0]); 
-    while (data->possible_paths[i++]) {
+    while (i++ < path_len) {
         data->cmd_paths[cmd_nr] = ft_strjoin(data->possible_paths[i -1], new_cmd);
         if (!data->cmd_paths[cmd_nr]) {
             free(new_cmd);
@@ -61,7 +72,9 @@ void get_cmd_path(t_data *data, size_t cmd_nr)
 			free(new_cmd);
             return; 
         }
-		free(data->cmd_paths[cmd_nr]);
+		// printf("%li\n", i);
+		if(i < path_len)
+			free(data->cmd_paths[cmd_nr]);
     }
 	free(new_cmd);
 	return(display_error(data, "Command not found"));

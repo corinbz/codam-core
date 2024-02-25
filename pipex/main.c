@@ -6,7 +6,7 @@
 /*   By: corin <corin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 12:28:48 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/25 15:58:41 by corin            ###   ########.fr       */
+/*   Updated: 2024/02/25 16:24:26 by corin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void initialiaze_data(t_data *data, char **envp, char **av)
 {
 	ft_bzero(data, sizeof(t_data));
-	data->cmd_paths = ft_calloc(2, sizeof(char *));
-	data->cmd_args = ft_calloc(2, sizeof(char **));
+	data->cmd_paths = ft_calloc(3, sizeof(char *));
+	data->cmd_args = ft_calloc(3, sizeof(char **));
 	create_and_open_files(data, av);
 	get_possible_paths(data, envp);
 	get_cmd_incl_flags(data, av[2], 0);

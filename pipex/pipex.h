@@ -6,7 +6,7 @@
 /*   By: corin <corin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 15:56:48 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/25 15:58:21 by corin            ###   ########.fr       */
+/*   Updated: 2024/02/25 16:45:03 by corin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_data
 void	get_possible_paths(t_data *data, char **envp);
 void	get_cmd_path(t_data *data, size_t cmd_nr);
 void	get_cmd_incl_flags(t_data *data, char *raw_cmd, size_t cmd_nr);
+size_t	ft_2dstrlen(char **arr);
 
 //file handeling
 int		executable_exists(char *path);
@@ -57,3 +58,4 @@ void	display_error(t_data *data, char *error);
 void	free_2d(char **arr);
 void	free_3d(char ***arr);
 void	free_data(t_data *data);
+void	ft_free(char *str);

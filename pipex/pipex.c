@@ -6,7 +6,7 @@
 /*   By: corin <corin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 13:48:19 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/25 15:44:46 by corin            ###   ########.fr       */
+/*   Updated: 2024/02/25 16:54:52 by corin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ void child_one(t_data *data, int *end, char **envp)
 	dup2(end[1], STDOUT_FILENO);
 	if (execve(data->cmd_paths[0], data->cmd_args[0], envp) == -1)
 	{
-		display_error(data, "child one execve failed");
+		// display_error(data, "child one execve failed");
+		perror("child one execve failed");
 	}
 }
 void child_two(t_data *data, int *end, char **envp)

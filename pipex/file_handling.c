@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   file_handeling.c                                   :+:      :+:    :+:   */
+/*   file_handling.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: corin <corin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 15:53:38 by corin             #+#    #+#             */
-/*   Updated: 2024/02/25 15:58:03 by corin            ###   ########.fr       */
+/*   Updated: 2024/02/25 16:09:17 by corin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void    create_and_open_files(t_data *data, char **av)
 {
-    data->in_fd = open(av[1], O_RDONLY);
-    data->out_fd = open(av[4], O_CREAT | O_TRUNC | O_RDWR, 0644);
-    if (data->in_fd == -1 || data->out_fd == -1)
-    {
-        display_error(data, "Error opening file");
-    } 
+    data->in_fd = open(av[1], O_RDONLY, 0666);
+	if(data->in_fd == -1)
+		display_error(data, "Error opening input file");
+    data->out_fd = open(av[4], O_CREAT | O_TRUNC | O_RDWR, 0666);
+	if(data->out_fd == -1)
+		display_error(data, "Error opening output file");
 }
 
 char *get_file_path (t_data *data, char *file_name, char **envp)
