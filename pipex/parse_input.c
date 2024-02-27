@@ -6,7 +6,7 @@
 /*   By: corin <corin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 18:46:25 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/25 20:29:15 by corin            ###   ########.fr       */
+/*   Updated: 2024/02/27 10:04:27 by corin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ void	get_possible_paths(t_data *data, char **envp)
 			data->possible_paths = ft_split(envp[i], ':');
 			if (!data->possible_paths)
 				display_error(data,
-					"Malloc failed in get_possible_paths", true);
+					"Malloc failed in get_possible_paths");
 			tmp = ft_substr(data->possible_paths[0], 5,
 					ft_strlen(data->possible_paths[0]) - 5);
 			if (!tmp)
 				display_error(data,
-					"Malloc failed in get_possible_paths", true);
+					"Malloc failed in get_possible_paths");
 			free(data->possible_paths[0]);
 			data->possible_paths[0] = tmp;
 			return ;
@@ -71,19 +71,19 @@ void	get_cmd_path(t_data *data, size_t cmd_nr)
 				new_cmd);
 		if (!data->cmd_paths[cmd_nr])
 			return (free(new_cmd), display_error(data,
-					"Malloc failed in get_cmd_path", true));
+					"Malloc failed in get_cmd_path"));
 		if (executable_exists(data->cmd_paths[cmd_nr]))
 			return (free(new_cmd));
 		if (i < path_len)
 			free(data->cmd_paths[cmd_nr]);
 	}
 	free(new_cmd);
-	return (display_error(data, "Command not found", true));
+	return (display_error(data, "Command not found"));
 }
 
 void	get_cmd_incl_flags(t_data *data, char *raw_cmd, size_t cmd_nr)
 {
 	data->cmd_args[cmd_nr] = ft_split(raw_cmd, ' ');
 	if (!data->cmd_args[cmd_nr])
-		display_error(data, "Malloc failed in get_cmd_incl_flags", true);
+		display_error(data, "Malloc failed in get_cmd_incl_flags");
 }

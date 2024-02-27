@@ -6,7 +6,7 @@
 /*   By: corin <corin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 15:56:48 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/25 20:34:26 by corin            ###   ########.fr       */
+/*   Updated: 2024/02/27 10:05:41 by corin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,8 @@ void	get_cmd_incl_flags(t_data *data, char *raw_cmd, size_t cmd_nr);
 size_t	ft_2dstrlen(char **arr);
 
 //file handeling
-int		executable_exists(char *path);
+bool	executable_exists(char *path);
 char	*get_file_path(t_data *data, char *file_name, char **envp);
-int		executable_exists(char *path);
 bool	in_file_access(char *file_path, char **envp);
 void	create_and_open_files(t_data *data, char **av);
 
@@ -51,7 +50,7 @@ void	pipex(t_data *data, char **argv, char **envp);
 
 //error handeling
 bool	ac_check(int ac, char **av);
-void	display_error(t_data *data, char *error, bool exit_program);
+void	display_error(t_data *data, char *error);
 
 //mem management
 void	free_2d(char **arr);

@@ -6,7 +6,7 @@
 /*   By: corin <corin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 16:08:47 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/25 20:14:30 by corin            ###   ########.fr       */
+/*   Updated: 2024/02/27 10:00:40 by corin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,9 @@ bool	ac_check(int ac, char **av)
 	return (true);
 }
 
-void	display_error(t_data *data, char *error, bool exit_program)
+void	display_error(t_data *data, char *error)
 {
 	free_data(data);
 	perror(error);
-	if (exit_program)
-		exit(EXIT_FAILURE);
+	exit(EXIT_FAILURE);
 }

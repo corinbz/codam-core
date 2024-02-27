@@ -6,7 +6,7 @@
 /*   By: corin <corin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 13:48:19 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/25 20:34:17 by corin            ###   ########.fr       */
+/*   Updated: 2024/02/27 10:06:50 by corin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,15 @@ void	pipex(t_data *data, char **argv, char **envp)
 	__pid_t		child2;
 
 	if (pipe(end) == -1)
-		display_error(data, "Pipe failed: ", true);
+		display_error(data, "Pipe failed: ");
 	child1 = fork();
 	if (child1 < 0)
-		display_error (data, "Fork child1: ", true);
+		display_error (data, "Fork child1: ");
 	if (child1 == 0)
 		child_one(data, end, envp);
 	child2 = fork();
 	if (child2 < 0)
-		display_error (data, "Fork child2: ", true);
+		display_error (data, "Fork child2: ");
 	if (child2 == 0)
 		child_two(data, end, envp);
 	close(end[0]);
@@ -46,7 +46,7 @@ void	child_one(t_data *data, int *end, char **envp)
 	dup2(end[1], STDOUT_FILENO);
 	if (execve(data->cmd_paths[0], data->cmd_args[0], envp) == -1)
 	{
-		display_error(data, "child one execve failed", true);
+		display_error(data, "child one execve failed");
 	}
 }
 
@@ -57,6 +57,6 @@ void	child_two(t_data *data, int *end, char **envp)
 	dup2(data->out_fd, STDOUT_FILENO);
 	if (execve(data->cmd_paths[1], data->cmd_args[1], envp) == -1)
 	{
-		display_error(data, "child two execve failed", true);
+		display_error(data, "child two execve failed");
 	}
 }
