@@ -6,13 +6,13 @@
 /*   By: corin <corin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 13:48:19 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/27 10:06:50 by corin            ###   ########.fr       */
+/*   Updated: 2024/03/08 20:49:50 by corin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	pipex(t_data *data, char **argv, char **envp)
+void	pipex(t_data *data, char **envp)
 {
 	int			end[2];
 	int			status;
@@ -44,9 +44,14 @@ void	child_one(t_data *data, int *end, char **envp)
 	close(end[0]);
 	dup2(data->in_fd, STDIN_FILENO);
 	dup2(end[1], STDOUT_FILENO);
+	close(data->in_fd);
+	close(end[1]);
+	close(data->out_fd);
 	if (execve(data->cmd_paths[0], data->cmd_args[0], envp) == -1)
 	{
-		display_error(data, "child one execve failed");
+		dup2(STDERR_FILENO, STDOUT_FILENO);
+		ft_putstr_fd("child one execve failed\n", 2);
+		exit(EXIT_FAILURE);
 	}
 }
 
@@ -55,8 +60,11 @@ void	child_two(t_data *data, int *end, char **envp)
 	close(end[1]);
 	dup2(end[0], STDIN_FILENO);
 	dup2(data->out_fd, STDOUT_FILENO);
+	close(data->in_fd);
+	close(data->out_fd);
+	close(end[0]);
 	if (execve(data->cmd_paths[1], data->cmd_args[1], envp) == -1)
 	{
-		display_error(data, "child two execve failed");
+		display_error(data, "child two execve failed\n");
 	}
 }

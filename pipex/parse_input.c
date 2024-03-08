@@ -6,7 +6,7 @@
 /*   By: corin <corin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 18:46:25 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/27 10:04:27 by corin            ###   ########.fr       */
+/*   Updated: 2024/03/08 20:48:22 by corin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ void	get_possible_paths(t_data *data, char **envp)
 	{
 		if (ft_strncmp("PATH", envp[i], 4) == 0)
 		{
+			free_2d(data->possible_paths);
 			data->possible_paths = ft_split(envp[i], ':');
 			if (!data->possible_paths)
-				display_error(data,
-					"Malloc failed in get_possible_paths");
+				display_error(data, "Malloc failed in get_possible_paths");
 			tmp = ft_substr(data->possible_paths[0], 5,
 					ft_strlen(data->possible_paths[0]) - 5);
 			if (!tmp)
@@ -37,6 +37,7 @@ void	get_possible_paths(t_data *data, char **envp)
 		}
 		i++;
 	}
+	display_error(data, "PATH not found in envp\n");
 }
 
 bool	executable_exists(char *path)
@@ -65,20 +66,22 @@ void	get_cmd_path(t_data *data, size_t cmd_nr)
 	i = 0;
 	path_len = ft_2dstrlen(data->possible_paths);
 	new_cmd = ft_strjoin("/", data->cmd_args[cmd_nr][0]);
-	while (i++ < path_len)
+	if (!new_cmd)
+		display_error(data, "Malloc failed in get_cmd_path");
+	while (i < path_len)
 	{
-		data->cmd_paths[cmd_nr] = ft_strjoin(data->possible_paths[i -1],
+		data->cmd_paths[cmd_nr] = ft_strjoin(data->possible_paths[i],
 				new_cmd);
 		if (!data->cmd_paths[cmd_nr])
 			return (free(new_cmd), display_error(data,
 					"Malloc failed in get_cmd_path"));
 		if (executable_exists(data->cmd_paths[cmd_nr]))
 			return (free(new_cmd));
+		i++;
 		if (i < path_len)
 			free(data->cmd_paths[cmd_nr]);
 	}
 	free(new_cmd);
-	return (display_error(data, "Command not found"));
 }
 
 void	get_cmd_incl_flags(t_data *data, char *raw_cmd, size_t cmd_nr)

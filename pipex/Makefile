@@ -1,6 +1,6 @@
 NAME = pipex
 
-CFLAGS = -g
+CFLAGS = -Wall -Wextra -Werror -g
 
 LIBFT = ./libft/libft.a
 LIBFTDIR = ./libft/
@@ -12,6 +12,7 @@ SRC = main.c\
 	error_handling.c\
 	mem_free.c\
 	file_handling.c\
+	parse_input2.c\
 
 
 #Colors

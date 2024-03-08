@@ -6,7 +6,7 @@
 /*   By: corin <corin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 11:26:35 by ccraciun          #+#    #+#             */
-/*   Updated: 2024/02/25 20:19:24 by corin            ###   ########.fr       */
+/*   Updated: 2024/03/08 20:48:11 by corin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,16 @@ void	free_2d(char **arr)
 	size_t	i;
 
 	i = 0;
-	if (arr)
+	if (arr != NULL)
 	{
-		while (arr[i])
+		while (arr[i] != NULL)
 		{
 			free(arr[i]);
+			arr[i] = NULL;
 			i++;
 		}
 		free(arr);
+		arr = NULL;
 	}
 }
 
@@ -41,6 +43,7 @@ void	free_3d(char ***arr)
 			i++;
 		}
 		free(arr);
+		arr = NULL;
 	}
 }
 
